@@ -5,13 +5,14 @@ import static org.junit.Assert.assertTrue;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -43,7 +44,7 @@ public class StudentControllerIT {
 	}
 
 	@Test
-	public void testRetrieveStudentCourse() {
+	public void testRetrieveStudentCourse() throws JSONException {
 
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
@@ -51,7 +52,7 @@ public class StudentControllerIT {
 				createURLWithPort("/students/Student1/courses/Course1"),
 				HttpMethod.GET, entity, String.class);
 
-		String expected = "{id:Course1,name:Spring,description:10 Steps}";
+		String expected = "{id:Course1,name:Spring,description:10Steps}";
 
 		JSONAssert.assertEquals(expected, response.getBody(), false);
 	}
@@ -59,7 +60,7 @@ public class StudentControllerIT {
 	@Test
 	public void addCourse() {
 
-		Course course = new Course("Course1", "Spring", "10 Steps", Arrays
+		Course course = new Course("Course1", "Spring", "10Steps", Arrays
 				.asList("Learn Maven", "Import Project", "First Example",
 						"Second Example"));
 
