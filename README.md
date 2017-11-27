@@ -24,8 +24,7 @@ For the best offers on our courses, Join our 15K Subscribers [here](http://eepur
 
 ### Useful Links
 - Find out more about in28Minutes and our approach to creating great learning experience - The in28Minutes Way - http://www.in28minutes.com/the-in28minutes-way
-- For the best offers on our courses, Join our 15K Subscribers [here](http://eepurl.com/bOJulL)
-  - Facebook  : https://www.facebook.com/in28Minutes​
-  - Twitter   : https://twitter.com/in28Minutes​
-  - YouTube   : https://www.youtube.com/rithustutorials​
-  - Instagram : https://www.instagram.com/in28minutes/
+- Facebook  : https://www.facebook.com/in28Minutes​
+- Twitter   : https://twitter.com/in28Minutes​
+- YouTube   : https://www.youtube.com/rithustutorials​
+- Instagram : https://www.instagram.com/in28minutes/
