@@ -1,0 +1,153 @@
+diff --git a/spring-boot-2-rest-service-validation/src/main/java/com/in28minutes/springboot/rest/example/student/Student.java b/spring-boot-2-rest-service-validation/src/main/java/com/in28minutes/springboot/rest/example/student/Student.java
+index a234210..36d1783 100644
+--- a/spring-boot-2-rest-service-validation/src/main/java/com/in28minutes/springboot/rest/example/student/Student.java
++++ b/spring-boot-2-rest-service-validation/src/main/java/com/in28minutes/springboot/rest/example/student/Student.java
+@@ -3,6 +3,7 @@ package com.in28minutes.springboot.rest.example.student;
+ import javax.persistence.Entity;
+ import javax.persistence.GeneratedValue;
+ import javax.persistence.Id;
++import javax.validation.constraints.NotNull;
+ import javax.validation.constraints.Size;
+ 
+ @Entity
+@@ -11,9 +12,12 @@ public class Student {
+ 	@GeneratedValue
+ 	private Long id;
+ 	
++	@NotNull
+ 	@Size(min=2, message="Name should have atleast 2 characters")
+ 	private String name;
+ 	
++	@NotNull
++	@Size(min=7, message="Passport should have atleast 2 characters")
+ 	private String passportNumber;
+ 	
+ 	public Student() {
+diff --git a/spring-boot-2-rest-service-versioning/readme.md b/spring-boot-2-rest-service-versioning/readme.md
+index 59083b8..fb17f00 100644
+--- a/spring-boot-2-rest-service-versioning/readme.md
++++ b/spring-boot-2-rest-service-versioning/readme.md
+@@ -288,18 +288,6 @@ public class StudentVersioningController {
+ ```properties
+ ```
+ ---
+-
+-### /src/main/resources/data.sql
+-
+-```
+-insert into student
+-values(10001,'Ranga', 'E1234567');
+-
+-insert into student
+-values(10002,'Ravi', 'A1234568');
+-```
+----
+-
+ ### /src/test/java/com/in28minutes/springboot/rest/example/SpringBoot2RestServiceApplicationTests.java
+ 
+ ```java
+diff --git a/spring-boot-2-rest-service-versioning/src/main/resources/data.sql b/spring-boot-2-rest-service-versioning/src/main/resources/data.sql
+deleted file mode 100644
+index 37cf365..0000000
+--- a/spring-boot-2-rest-service-versioning/src/main/resources/data.sql
++++ /dev/null
+@@ -1,5 +0,0 @@
+-insert into student
+-values(10001,'Ranga', 'E1234567');
+-
+-insert into student
+-values(10002,'Ravi', 'A1234568');
+\ No newline at end of file
+diff --git a/spring-boot-basic-microservice/spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ForexController.java b/spring-boot-basic-microservice/spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ForexController.java
+index 9949751..3dff33a 100644
+--- a/spring-boot-basic-microservice/spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ForexController.java
++++ b/spring-boot-basic-microservice/spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ForexController.java
+@@ -1,6 +1,4 @@
+ package com.in28minutes.springboot.microservice.example.forex;
+-import java.math.BigDecimal;
+-
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.core.env.Environment;
+ import org.springframework.web.bind.annotation.GetMapping;
+diff --git a/spring-boot-tutorial-basics-configuration/src/main/resources/application-dev.properties b/spring-boot-tutorial-basics-configuration/src/main/resources/application-dev.properties
+index 64ae63a..6e72003 100644
+--- a/spring-boot-tutorial-basics-configuration/src/main/resources/application-dev.properties
++++ b/spring-boot-tutorial-basics-configuration/src/main/resources/application-dev.properties
+@@ -1 +1,3 @@
+-welcome.message=Welcome message from property file! Welcome to ${app.name} in DEV
+\ No newline at end of file
++welcome.message=Welcome message from property file! Welcome to ${app.name} in DEV
++
++basic.message: Dynamic Message in DEV
+diff --git a/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/AfterAopAspect.java b/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/AfterAopAspect.java
+index 87d6e63..c9630d7 100644
+--- a/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/AfterAopAspect.java
++++ b/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/AfterAopAspect.java
+@@ -15,13 +15,13 @@ public class AfterAopAspect {
+ 
+ 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+ 
+-	@AfterReturning(value = "execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))", 
++	@AfterReturning(value = "execution(* com.in28minutes.springboot.tutorial.basics.example.aop.business.*.*(..))", 
+ 			returning = "result")
+ 	public void afterReturning(JoinPoint joinPoint, Object result) {
+ 		logger.info("{} returned with value {}", joinPoint, result);
+ 	}
+ 	
+-	@After(value = "execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))")
++	@After(value = "execution(* com.in28minutes.springboot.tutorial.basics.example.aop.business.*.*(..))")
+ 	public void after(JoinPoint joinPoint) {
+ 		logger.info("after execution of {}", joinPoint);
+ 	}
+diff --git a/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/CommonJoinPointConfig.java b/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/CommonJoinPointConfig.java
+deleted file mode 100644
+index 4d44fd6..0000000
+--- a/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/CommonJoinPointConfig.java
++++ /dev/null
+@@ -1,24 +0,0 @@
+-package com.in28minutes.springboot.tutorial.basics.example.aop;
+-import org.aspectj.lang.annotation.Pointcut;
+-
+-public class CommonJoinPointConfig {
+-	
+-	@Pointcut("execution(* com.in28minutes.springboot.basics.example.aop.data.*.*(..))")
+-	public void dataLayerExecution(){}
+-	
+-	@Pointcut("execution(* com.in28minutes.springboot.basics.example.aop.business.*.*(..))")
+-	public void businessLayerExecution(){}
+-	
+-	@Pointcut("dataLayerExecution() && businessLayerExecution()")
+-	public void allLayerExecution(){}
+-	
+-	@Pointcut("bean(*dao*)")
+-	public void beanContainingDao(){}
+-	
+-	@Pointcut("within(com.in28minutes.springboot.basics.example.aop.data..*)")
+-	public void dataLayerExecutionWithWithin(){}
+-
+-	@Pointcut("@annotation(com.in28minutes.springboot.basics.example.aop.TrackTime)")
+-	public void trackTimeAnnotation(){}
+-
+-}
+\ No newline at end of file
+diff --git a/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/UserAccessAspect.java b/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/UserAccessAspect.java
+index 40ae90c..be1f89b 100644
+--- a/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/UserAccessAspect.java
++++ b/spring-boot-tutorial-basics/src/main/java/com/in28minutes/springboot/tutorial/basics/example/aop/UserAccessAspect.java
+@@ -17,7 +17,7 @@ public class UserAccessAspect {
+ 	//What kind of method calls I would intercept
+ 	//execution(* PACKAGE.*.*(..))
+ 	//Weaving & Weaver
+-	@Before("execution(* com.in28minutes.springboot.basics.example.aop.data.*.*(..))")
++	@Before("execution(* com.in28minutes.springboot.tutorial.basics.example.aop.data.*.*(..))")
+ 	public void before(JoinPoint joinPoint){
+ 		//Advice
+ 		logger.info(" Check for user access ");
+diff --git a/spring-boot-tutorial-basics/src/main/resources/application.properties b/spring-boot-tutorial-basics/src/main/resources/application.properties
+index 2f759ea..e69de29 100644
+--- a/spring-boot-tutorial-basics/src/main/resources/application.properties
++++ b/spring-boot-tutorial-basics/src/main/resources/application.properties
+@@ -1,2 +0,0 @@
+-logging.level.org.springframework.web=DEBUG
+-logging.level.org.hibernate=INFO
+\ No newline at end of file

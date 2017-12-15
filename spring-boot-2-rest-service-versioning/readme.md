@@ -288,18 +288,6 @@ public class StudentVersioningController {
 ```properties
 ```
 ---
-
-### /src/main/resources/data.sql
-
-```
-insert into student
-values(10001,'Ranga', 'E1234567');
-
-insert into student
-values(10002,'Ravi', 'A1234568');
-```
----
-
 ### /src/test/java/com/in28minutes/springboot/rest/example/SpringBoot2RestServiceApplicationTests.java
 
 ```java

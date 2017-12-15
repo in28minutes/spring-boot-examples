@@ -17,7 +17,7 @@ public class UserAccessAspect {
 	//What kind of method calls I would intercept
 	//execution(* PACKAGE.*.*(..))
 	//Weaving & Weaver
-	@Before("execution(* com.in28minutes.springboot.basics.example.aop.data.*.*(..))")
+	@Before("execution(* com.in28minutes.springboot.tutorial.basics.example.aop.data.*.*(..))")
 	public void before(JoinPoint joinPoint){
 		//Advice
 		logger.info(" Check for user access ");
