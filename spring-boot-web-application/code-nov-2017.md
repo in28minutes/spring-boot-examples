@@ -45,10 +45,10 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-applic
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!--<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
