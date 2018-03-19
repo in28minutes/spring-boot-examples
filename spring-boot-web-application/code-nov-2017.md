@@ -24,7 +24,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-applic
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.M3</version>
+		<version>2.0.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -45,10 +45,10 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-applic
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -336,7 +336,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Authentication : User --> Roles
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("user1").password("secret1")
+		auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance()).withUser("user1").password("secret1")
 				.roles("USER").and().withUser("admin1").password("secret1")
 				.roles("USER", "ADMIN");
 	}
