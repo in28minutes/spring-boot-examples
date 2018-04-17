@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.in28minutes.springboot.rest.example'
+version = '0.0.1-SNAPSHOT'
+
+description = """spring-boot-2-rest-service"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+        
+     maven { url "https://repo.spring.io/snapshot" }
+     maven { url "https://repo.spring.io/milestone" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version:'2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.0.RELEASE'
+    runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version:'2.0.0.RELEASE'
+    runtime group: 'com.h2database', name: 'h2', version:'1.4.196'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.0.0.RELEASE'
+}

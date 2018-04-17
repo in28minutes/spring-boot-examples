@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.in28minutes.springboot'
+version = '0.0.1-SNAPSHOT'
+
+description = """student-services"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+        
+     maven { url "https://repo.spring.io/snapshot" }
+     maven { url "https://repo.spring.io/milestone" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version:'2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'2.0.0.RELEASE'
+    runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version:'2.0.0.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.0.0.RELEASE'
+    compileOnly group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version:'8.5.28'
+}
