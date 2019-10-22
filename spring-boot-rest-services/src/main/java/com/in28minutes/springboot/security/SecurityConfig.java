@@ -1,16 +1,18 @@
 package com.in28minutes.springboot.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-//@Configuration
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Authentication : User --> Roles
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance()).withUser("user1").password("secret1")
+		auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).withUser("user1").password("secret1")
 				.roles("USER").and().withUser("admin1").password("secret1")
 				.roles("USER", "ADMIN");
 	}
@@ -21,6 +23,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasRole("USER").antMatchers("/users/**").hasRole("USER")
 				.antMatchers("/**").hasRole("ADMIN").and().csrf().disable()
 				.headers().frameOptions().disable();
+	}
+
+	@SuppressWarnings("deprecation")
+	@Bean
+	public static NoOpPasswordEncoder passwordEncoder(){
+		return (NoOpPasswordEncoder)NoOpPasswordEncoder.getInstance();
 	}
 
 }
