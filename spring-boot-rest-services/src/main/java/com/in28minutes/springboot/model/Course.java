@@ -1,11 +1,25 @@
 package com.in28minutes.springboot.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity
+@Getter @Setter
 public class Course {
+	@Id
 	private String id;
+	@NotNull
 	private String name;
+	@NaturalId
 	private String description;
+	@ElementCollection
 	private List<String> steps;
 
 	// Needed by Caused by: com.fasterxml.jackson.databind.JsonMappingException:
@@ -25,25 +39,6 @@ public class Course {
 		this.steps = steps;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public List<String> getSteps() {
-		return steps;
-	}
 
 	@Override
 	public String toString() {
