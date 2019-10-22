@@ -1,47 +1,55 @@
 package com.in28minutes.springboot.service;
 
+import com.in28minutes.springboot.jpa.CourseCommandLineRunner;
+import com.in28minutes.springboot.jpa.CourseRepository;
+import com.in28minutes.springboot.model.Course;
+import com.in28minutes.springboot.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.springframework.stereotype.Component;
-
-import com.in28minutes.springboot.model.Course;
-import com.in28minutes.springboot.model.Student;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
+@Order(30)
 public class StudentService {
 
 	private static List<Student> students = new ArrayList<>();
 
-	static {
-		//Initialize Data
-		Course course1 = new Course("Course1", "Spring", "10 Steps", Arrays
-				.asList("Learn Maven", "Import Project", "First Example",
-						"Second Example"));
-		Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
-				Arrays.asList("Learn Maven", "Import Project", "First Example",
-						"Second Example"));
-		Course course3 = new Course("Course3", "Spring Boot", "6K Students",
-				Arrays.asList("Learn Maven", "Learn Spring",
-						"Learn Spring MVC", "First Example", "Second Example"));
-		Course course4 = new Course("Course4", "Maven",
-				"Most popular maven course on internet!", Arrays.asList(
-						"Pom.xml", "Build Life Cycle", "Parent POM",
-						"Importing into Eclipse"));
+	CourseRepository courseRepository;
 
+
+	@Autowired
+	StudentService(CourseCommandLineRunner courseCommandLineRunner) {
+		try {
+			courseCommandLineRunner.run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		courseRepository = courseCommandLineRunner.getCourseRepository();
+		List<Course> courses = StreamSupport.stream(courseRepository.findAll().spliterator(),false).collect(Collectors.toList());
 		Student ranga = new Student("Student1", "Ranga Karanam",
 				"Hiker, Programmer and Architect", new ArrayList<>(Arrays
-						.asList(course1, course2, course3, course4)));
+				.asList(courses.get(0), courses.get(1), courses.get(2), courses.get(3))));
 
 		Student satish = new Student("Student2", "Satish T",
 				"Hiker, Programmer and Architect", new ArrayList<>(Arrays
-						.asList(course1, course2, course3, course4)));
+				.asList(courses.get(0), courses.get(1), courses.get(2), courses.get(3))));
 
 		students.add(ranga);
 		students.add(satish);
+	}
+
+	public Student addStudent(Student student)
+	{
+		students.add(student);
+		return student;
 	}
 
 	public List<Student> retrieveAllStudents() {

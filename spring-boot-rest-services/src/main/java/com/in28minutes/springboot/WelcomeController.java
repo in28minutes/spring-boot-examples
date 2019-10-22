@@ -9,14 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.in28minutes.springboot.configuration.BasicConfiguration;
 
+import javax.validation.Valid;
+
 @RestController
 public class WelcomeController {
 
-	@Autowired
 	private WelcomeService service;
 
-	@Autowired
 	private BasicConfiguration configuration;
+
+	@Autowired
+	WelcomeController(@Valid WelcomeService welcomeService,@Valid BasicConfiguration basicConfiguration)
+	{
+		service=welcomeService;
+		configuration=basicConfiguration;
+	}
 
 	@RequestMapping("/welcome")
 	public String welcome() {

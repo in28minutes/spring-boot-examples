@@ -1,13 +1,29 @@
 package com.in28minutes.springboot.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Getter
+@Setter
 public class Course {
+	@Id
 	private String id;
-	private String name;
-	private String description;
-	private List<String> steps;
 
+	@NaturalId
+	private String name;
+
+	@NotNull
+	private String description;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	List<String> steps = new ArrayList<>();
 	// Needed by Caused by: com.fasterxml.jackson.databind.JsonMappingException:
 	// Can not construct instance of com.in28minutes.springboot.model.Course:
 	// no suitable constructor found, can not deserialize from Object value
@@ -23,26 +39,6 @@ public class Course {
 		this.name = name;
 		this.description = description;
 		this.steps = steps;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public List<String> getSteps() {
-		return steps;
 	}
 
 	@Override
@@ -76,5 +72,4 @@ public class Course {
 			return false;
 		return true;
 	}
-
 }
