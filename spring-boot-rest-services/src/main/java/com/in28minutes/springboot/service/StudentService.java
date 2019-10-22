@@ -25,8 +25,8 @@ public class StudentService {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		Student ranga=new Student("student1","ranga","cse",courseCommandLineRunner.getCourses());
-		Student banga=new Student("student2","banga","ece",courseCommandLineRunner.getCourses());
+		Student ranga=new Student("Student1","ranga","cse",courseCommandLineRunner.getCourses());
+		Student banga=new Student("Student2","banga","ece",courseCommandLineRunner.getCourses());
 		students.add(ranga);
 		students.add(banga);
 	}

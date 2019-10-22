@@ -23,19 +23,19 @@ public class StudentServiceTest {
 
     @Test
     public void retriveStudentTest(){
-    String name=studentService.retrieveStudent("student1").getName();
+    String name=studentService.retrieveStudent("Student1").getName();
         Assert.assertEquals(name,"ranga");
     }
 
     @Test
     public void retriveCoursesTest(){
-        List<Course> courses= studentService.retrieveCourses("student1");
+        List<Course> courses= studentService.retrieveCourses("Student1");
         Assert.assertEquals(courses,courseCommandLineRunner.getCourses());
     }
 
     @Test
     public void retrieveCourseIdTest(){
-        Course course=studentService.retrieveCourse("student1","Course1");
+        Course course=studentService.retrieveCourse("Student1","Course1");
         Assert.assertEquals(course.getName(),"Spring");
     }
 
@@ -46,8 +46,8 @@ public class StudentServiceTest {
         Course course1 = new Course("Course1", "NewlyAdded", "10 Steps", Arrays
                 .asList("Learn Maven", "Import Project", "First Example",
                         "Second Example"));
-        studentService.addCourse("student1",course1);
-        List<Course> courses= studentService.retrieveCourses("student1");
+        studentService.addCourse("Student1",course1);
+        List<Course> courses= studentService.retrieveCourses("Student1");
         for( Course course:courses){
             if(course.getName().equals("NewlyAdded")) add=true;
         }
