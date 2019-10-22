@@ -1,0 +1,168 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Course</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.in28minutes.springboot.model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Course (com.in28minutes.springboot.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Course</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    53.1%
+  </span>
+  <span class="absValue">
+    (17/ 32)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Course$HibernateProxy$DNTDEcP6</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    53.1%
+  </span>
+  <span class="absValue">
+    (17/ 32)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.in28minutes.springboot.model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import lombok.Getter;
+<i>4</i>&nbsp;import lombok.Setter;
+<i>5</i>&nbsp;import org.hibernate.annotations.NaturalId;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import javax.persistence.*;
+<i>8</i>&nbsp;import javax.validation.constraints.NotNull;
+<i>9</i>&nbsp;import java.util.ArrayList;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;@Entity
+<i>13</i>&nbsp;@Getter
+<b class="fc"><i>14</i>&nbsp;@Setter</b>
+<i>15</i>&nbsp;public class Course {
+<i>16</i>&nbsp;	@Id
+<b class="fc"><i>17</i>&nbsp;	private String id;</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;	@NaturalId
+<b class="fc"><i>20</i>&nbsp;	private String name;</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;	@NotNull
+<b class="fc"><i>23</i>&nbsp;	private String description;</b>
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;	@ElementCollection(fetch = FetchType.EAGER)</b>
+<b class="fc"><i>26</i>&nbsp;	List&lt;String&gt; steps = new ArrayList&lt;&gt;();</b>
+<i>27</i>&nbsp;	// Needed by Caused by: com.fasterxml.jackson.databind.JsonMappingException:
+<i>28</i>&nbsp;	// Can not construct instance of com.in28minutes.springboot.model.Course:
+<i>29</i>&nbsp;	// no suitable constructor found, can not deserialize from Object value
+<i>30</i>&nbsp;	// (missing default constructor or creator, or perhaps need to add/enable
+<i>31</i>&nbsp;	// type information?)
+<b class="fc"><i>32</i>&nbsp;	public Course() {</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;	}</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;	public Course(String id, String name, String description, List&lt;String&gt; steps) {
+<b class="fc"><i>37</i>&nbsp;		super();</b>
+<b class="fc"><i>38</i>&nbsp;		this.id = id;</b>
+<b class="fc"><i>39</i>&nbsp;		this.name = name;</b>
+<b class="fc"><i>40</i>&nbsp;		this.description = description;</b>
+<b class="fc"><i>41</i>&nbsp;		this.steps = steps;</b>
+<b class="fc"><i>42</i>&nbsp;	}</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;	@Override
+<i>45</i>&nbsp;	public String toString() {
+<b class="fc"><i>46</i>&nbsp;		return String.format(</b>
+<i>47</i>&nbsp;				&quot;Course [id=%s, name=%s, description=%s, steps=%s]&quot;, id, name,
+<i>48</i>&nbsp;				description, steps);
+<i>49</i>&nbsp;	}
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;	@Override
+<i>52</i>&nbsp;	public int hashCode() {
+<b class="nc"><i>53</i>&nbsp;		final int prime = 31;</b>
+<b class="nc"><i>54</i>&nbsp;		int result = 1;</b>
+<b class="nc"><i>55</i>&nbsp;		result = prime * result + ((id == null) ? 0 : id.hashCode());</b>
+<b class="nc"><i>56</i>&nbsp;		return result;</b>
+<i>57</i>&nbsp;	}
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;	@Override
+<i>60</i>&nbsp;	public boolean equals(Object obj) {
+<b class="fc"><i>61</i>&nbsp;		if (this == obj)</b>
+<b class="fc"><i>62</i>&nbsp;			return true;</b>
+<b class="nc"><i>63</i>&nbsp;		if (obj == null)</b>
+<b class="nc"><i>64</i>&nbsp;			return false;</b>
+<b class="nc"><i>65</i>&nbsp;		if (getClass() != obj.getClass())</b>
+<b class="nc"><i>66</i>&nbsp;			return false;</b>
+<b class="nc"><i>67</i>&nbsp;		Course other = (Course) obj;</b>
+<b class="nc"><i>68</i>&nbsp;		if (id == null) {</b>
+<b class="nc"><i>69</i>&nbsp;			if (other.id != null)</b>
+<b class="nc"><i>70</i>&nbsp;				return false;</b>
+<b class="nc"><i>71</i>&nbsp;		} else if (!id.equals(other.id))</b>
+<b class="nc"><i>72</i>&nbsp;			return false;</b>
+<b class="nc"><i>73</i>&nbsp;		return true;</b>
+<i>74</i>&nbsp;	}
+<i>75</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-10-22 12:35</div>
+</div>
+</body>
+</html>

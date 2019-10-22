@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserCommandLineRunner</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.in28minutes.springboot.jpa</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserCommandLineRunner (com.in28minutes.springboot.jpa)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserCommandLineRunner</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/ 18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserCommandLineRunner$$EnhancerBySpringCGLIB$$113fb34e</td>
+  </tr>
+  <tr>
+    <td class="name">UserCommandLineRunner$$EnhancerBySpringCGLIB$$113fb34e$$FastClassBySpringCGLIB$$65f6ac25</td>
+  </tr>
+  <tr>
+    <td class="name">UserCommandLineRunner$$FastClassBySpringCGLIB$$380b6ae9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/ 18)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.in28minutes.springboot.jpa;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.in28minutes.springboot.model.User;
+<i>4</i>&nbsp;import org.slf4j.Logger;
+<i>5</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.boot.CommandLineRunner;
+<i>8</i>&nbsp;import org.springframework.core.annotation.Order;
+<i>9</i>&nbsp;import org.springframework.stereotype.Component;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import javax.transaction.Transactional;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;@Component
+<i>15</i>&nbsp;@Order(2)
+<i>16</i>&nbsp;public class UserCommandLineRunner implements CommandLineRunner {
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;	private static final Logger log = LoggerFactory</b>
+<b class="fc"><i>19</i>&nbsp;			.getLogger(UserCommandLineRunner.class);</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;	private UserRepository repository;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;	@Autowired
+<i>25</i>&nbsp;	UserCommandLineRunner(UserRepository userRepository)
+<b class="fc"><i>26</i>&nbsp;	{</b>
+<b class="fc"><i>27</i>&nbsp;		repository=userRepository;</b>
+<b class="fc"><i>28</i>&nbsp;	}</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;	@Override
+<i>31</i>&nbsp;	@Transactional
+<i>32</i>&nbsp;	public void run(String... args) throws Exception {
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;		repository.save(new User(&quot;Ranga&quot;, &quot;Admin&quot;));</b>
+<b class="fc"><i>35</i>&nbsp;		repository.save(new User(&quot;Ravi&quot;, &quot;User&quot;));</b>
+<b class="fc"><i>36</i>&nbsp;		repository.save(new User(&quot;Satish&quot;, &quot;Admin&quot;));</b>
+<b class="fc"><i>37</i>&nbsp;		repository.save(new User(&quot;Raghu&quot;, &quot;User&quot;));</b>
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;		for (User user : repository.findAll()) {</b>
+<b class="fc"><i>40</i>&nbsp;			log.info(user.toString());</b>
+<b class="fc"><i>41</i>&nbsp;		}</b>
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;		log.info(&quot;Admin users are.....&quot;);</b>
+<b class="fc"><i>44</i>&nbsp;		log.info(&quot;____________________&quot;);</b>
+<b class="fc"><i>45</i>&nbsp;		for (User user : repository.findByRole(&quot;Admin&quot;)) {</b>
+<b class="fc"><i>46</i>&nbsp;			log.info(user.toString());</b>
+<b class="fc"><i>47</i>&nbsp;		}</b>
+<i>48</i>&nbsp;
+<b class="fc"><i>49</i>&nbsp;	}</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-10-22 12:35</div>
+</div>
+</body>
+</html>

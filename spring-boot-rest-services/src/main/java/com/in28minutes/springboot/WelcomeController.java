@@ -19,7 +19,7 @@ public class WelcomeController {
 	private BasicConfiguration configuration;
 
 	@Autowired
-	WelcomeController(@Valid WelcomeService welcomeService,@Valid BasicConfiguration basicConfiguration)
+	public WelcomeController(@Valid WelcomeService welcomeService,@Valid BasicConfiguration basicConfiguration)
 	{
 		service=welcomeService;
 		configuration=basicConfiguration;

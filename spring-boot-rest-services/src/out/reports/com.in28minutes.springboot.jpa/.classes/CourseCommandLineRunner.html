@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CourseCommandLineRunner</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.in28minutes.springboot.jpa</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CourseCommandLineRunner (com.in28minutes.springboot.jpa)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CourseCommandLineRunner</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CourseCommandLineRunner$$EnhancerBySpringCGLIB$$3a9f329e</td>
+  </tr>
+  <tr>
+    <td class="name">CourseCommandLineRunner$$EnhancerBySpringCGLIB$$3a9f329e$$FastClassBySpringCGLIB$$522dbac6</td>
+  </tr>
+  <tr>
+    <td class="name">CourseCommandLineRunner$$FastClassBySpringCGLIB$$a88c5359</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.in28minutes.springboot.jpa;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import com.in28minutes.springboot.model.Course;
+<i>5</i>&nbsp;import com.in28minutes.springboot.model.User;
+<i>6</i>&nbsp;import org.slf4j.Logger;
+<i>7</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>8</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>9</i>&nbsp;import org.springframework.boot.CommandLineRunner;
+<i>10</i>&nbsp;import org.springframework.core.annotation.Order;
+<i>11</i>&nbsp;import org.springframework.stereotype.Component;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import javax.transaction.Transactional;
+<i>14</i>&nbsp;import java.util.Arrays;
+<i>15</i>&nbsp;import java.util.Collection;
+<i>16</i>&nbsp;import java.util.LinkedList;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;@Component
+<i>20</i>&nbsp;@Order(1)
+<i>21</i>&nbsp;public class CourseCommandLineRunner implements CommandLineRunner {
+<b class="fc"><i>22</i>&nbsp;    private static final Logger log = LoggerFactory.getLogger(CourseCommandLineRunner.class);</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private CourseRepository courseRepository;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Autowired
+<i>27</i>&nbsp;    CourseCommandLineRunner(CourseRepository courseRepository)
+<b class="fc"><i>28</i>&nbsp;    {</b>
+<b class="fc"><i>29</i>&nbsp;        this.courseRepository = courseRepository;</b>
+<b class="fc"><i>30</i>&nbsp;    }</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    @Override
+<i>33</i>&nbsp;    @Transactional
+<i>34</i>&nbsp;    public void run(String... args) throws Exception {
+<i>35</i>&nbsp;
+<b class="fc"><i>36</i>&nbsp;        courseRepository.save(new Course(&quot;Course1&quot;, &quot;Spring&quot;, &quot;10 Steps&quot;, Arrays</b>
+<b class="fc"><i>37</i>&nbsp;                .asList(&quot;Learn Maven&quot;, &quot;Import Project&quot;, &quot;First Example&quot;,</b>
+<i>38</i>&nbsp;                        &quot;Second Example&quot;)));
+<b class="fc"><i>39</i>&nbsp;        courseRepository.save(new Course(&quot;Course2&quot;, &quot;Spring MVC&quot;, &quot;10 Examples&quot;,</b>
+<b class="fc"><i>40</i>&nbsp;                Arrays.asList(&quot;Learn Maven&quot;, &quot;Import Project&quot;, &quot;First Example&quot;,</b>
+<i>41</i>&nbsp;                        &quot;Second Example&quot;)));
+<b class="fc"><i>42</i>&nbsp;        courseRepository.save(new Course(&quot;Course3&quot;, &quot;Spring Boot&quot;, &quot;6K Students&quot;,</b>
+<b class="fc"><i>43</i>&nbsp;                Arrays.asList(&quot;Learn Maven&quot;, &quot;Learn Spring&quot;,</b>
+<i>44</i>&nbsp;                        &quot;Learn Spring MVC&quot;, &quot;First Example&quot;, &quot;Second Example&quot;)));
+<b class="fc"><i>45</i>&nbsp;        courseRepository.save( new Course(&quot;Course4&quot;, &quot;Maven&quot;,</b>
+<b class="fc"><i>46</i>&nbsp;                &quot;Most popular maven course on internet!&quot;, Arrays.asList(</b>
+<i>47</i>&nbsp;                &quot;Pom.xml&quot;, &quot;Build Life Cycle&quot;, &quot;Parent POM&quot;,
+<i>48</i>&nbsp;                &quot;Importing into Eclipse&quot;)));
+<b class="fc"><i>49</i>&nbsp;        for (Course course : courseRepository.findAll()) {</b>
+<b class="fc"><i>50</i>&nbsp;            log.info(course.toString());</b>
+<b class="fc"><i>51</i>&nbsp;        }</b>
+<i>52</i>&nbsp;
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public CourseRepository getCourseRepository() {
+<b class="fc"><i>56</i>&nbsp;        return courseRepository;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-10-22 12:35</div>
+</div>
+</body>
+</html>

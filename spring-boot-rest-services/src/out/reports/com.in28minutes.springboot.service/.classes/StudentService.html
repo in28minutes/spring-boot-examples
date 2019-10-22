@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: StudentService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.in28minutes.springboot.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: StudentService (com.in28minutes.springboot.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StudentService</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (36/ 45)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$61WXD2ax</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$8Gx72YlV</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$CWoZ8gKb</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$DelDbnvr</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$EAi6vDPp</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$HII9Y8TP</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$RcpTh3IG</td>
+  </tr>
+  <tr>
+    <td class="name">StudentService$MockitoMock$1387011224$auxiliary$ZgQygvfX</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (36/ 45)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.in28minutes.springboot.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.in28minutes.springboot.jpa.CourseCommandLineRunner;
+<i>4</i>&nbsp;import com.in28minutes.springboot.jpa.CourseRepository;
+<i>5</i>&nbsp;import com.in28minutes.springboot.model.Course;
+<i>6</i>&nbsp;import com.in28minutes.springboot.model.Student;
+<i>7</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>8</i>&nbsp;import org.springframework.core.annotation.Order;
+<i>9</i>&nbsp;import org.springframework.stereotype.Component;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.math.BigInteger;
+<i>12</i>&nbsp;import java.security.SecureRandom;
+<i>13</i>&nbsp;import java.util.ArrayList;
+<i>14</i>&nbsp;import java.util.Arrays;
+<i>15</i>&nbsp;import java.util.List;
+<i>16</i>&nbsp;import java.util.stream.Collectors;
+<i>17</i>&nbsp;import java.util.stream.StreamSupport;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;@Component
+<i>20</i>&nbsp;@Order(30)
+<i>21</i>&nbsp;public class StudentService {
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;	private static List&lt;Student&gt; students = new ArrayList&lt;&gt;();</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;	CourseRepository courseRepository;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;	@Autowired
+<b class="fc"><i>29</i>&nbsp;	StudentService(CourseCommandLineRunner courseCommandLineRunner) {</b>
+<i>30</i>&nbsp;		try {
+<b class="fc"><i>31</i>&nbsp;			courseCommandLineRunner.run();</b>
+<b class="nc"><i>32</i>&nbsp;		} catch (Exception e) {</b>
+<b class="nc"><i>33</i>&nbsp;			e.printStackTrace();</b>
+<b class="fc"><i>34</i>&nbsp;		}</b>
+<b class="fc"><i>35</i>&nbsp;		courseRepository = courseCommandLineRunner.getCourseRepository();</b>
+<b class="fc"><i>36</i>&nbsp;		List&lt;Course&gt; courses = StreamSupport.stream(courseRepository.findAll().spliterator(),false).collect(Collectors.toList());</b>
+<b class="fc"><i>37</i>&nbsp;		Student ranga = new Student(&quot;Student1&quot;, &quot;Ranga Karanam&quot;,</b>
+<i>38</i>&nbsp;				&quot;Hiker, Programmer and Architect&quot;, new ArrayList&lt;&gt;(Arrays
+<b class="fc"><i>39</i>&nbsp;				.asList(courses.get(0), courses.get(1), courses.get(2), courses.get(3))));</b>
+<i>40</i>&nbsp;
+<b class="fc"><i>41</i>&nbsp;		Student satish = new Student(&quot;Student2&quot;, &quot;Satish T&quot;,</b>
+<i>42</i>&nbsp;				&quot;Hiker, Programmer and Architect&quot;, new ArrayList&lt;&gt;(Arrays
+<b class="fc"><i>43</i>&nbsp;				.asList(courses.get(0), courses.get(1), courses.get(2), courses.get(3))));</b>
+<i>44</i>&nbsp;
+<b class="fc"><i>45</i>&nbsp;		students.add(ranga);</b>
+<b class="fc"><i>46</i>&nbsp;		students.add(satish);</b>
+<b class="fc"><i>47</i>&nbsp;	}</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;	public Student addStudent(Student student)
+<i>50</i>&nbsp;	{
+<b class="fc"><i>51</i>&nbsp;		students.add(student);</b>
+<b class="fc"><i>52</i>&nbsp;		return student;</b>
+<i>53</i>&nbsp;	}
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;	public List&lt;Student&gt; retrieveAllStudents() {
+<b class="nc"><i>56</i>&nbsp;		return students;</b>
+<i>57</i>&nbsp;	}
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;	public Student retrieveStudent(String studentId) {
+<b class="fc"><i>60</i>&nbsp;		for (Student student : students) {</b>
+<b class="fc"><i>61</i>&nbsp;			if (student.getId().equals(studentId)) {</b>
+<b class="fc"><i>62</i>&nbsp;				return student;</b>
+<i>63</i>&nbsp;			}
+<b class="fc"><i>64</i>&nbsp;		}</b>
+<b class="nc"><i>65</i>&nbsp;		return null;</b>
+<i>66</i>&nbsp;	}
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;	public List&lt;Course&gt; retrieveCourses(String studentId) {
+<b class="fc"><i>69</i>&nbsp;		Student student = retrieveStudent(studentId);</b>
+<i>70</i>&nbsp;		
+<b class="fc"><i>71</i>&nbsp;		if(studentId.equalsIgnoreCase(&quot;Student1&quot;)){</b>
+<b class="nc"><i>72</i>&nbsp;			throw new RuntimeException(&quot;Something went wrong&quot;);</b>
+<i>73</i>&nbsp;		}
+<i>74</i>&nbsp;
+<b class="fc"><i>75</i>&nbsp;		if (student == null) {</b>
+<b class="nc"><i>76</i>&nbsp;			return null;</b>
+<i>77</i>&nbsp;		}
+<i>78</i>&nbsp;
+<b class="fc"><i>79</i>&nbsp;		return student.getCourses();</b>
+<i>80</i>&nbsp;	}
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;	public Course retrieveCourse(String studentId, String courseId) {
+<b class="fc"><i>83</i>&nbsp;		Student student = retrieveStudent(studentId);</b>
+<i>84</i>&nbsp;
+<b class="fc"><i>85</i>&nbsp;		if (student == null) {</b>
+<b class="nc"><i>86</i>&nbsp;			return null;</b>
+<i>87</i>&nbsp;		}
+<i>88</i>&nbsp;
+<b class="fc"><i>89</i>&nbsp;		for (Course course : student.getCourses()) {</b>
+<b class="fc"><i>90</i>&nbsp;			if (course.getId().equals(courseId)) {</b>
+<b class="fc"><i>91</i>&nbsp;				return course;</b>
+<i>92</i>&nbsp;			}
+<b class="fc"><i>93</i>&nbsp;		}</b>
+<i>94</i>&nbsp;
+<b class="nc"><i>95</i>&nbsp;		return null;</b>
+<i>96</i>&nbsp;	}
+<i>97</i>&nbsp;
+<b class="fc"><i>98</i>&nbsp;	private SecureRandom random = new SecureRandom();</b>
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;	public Course addCourse(String studentId, Course course) {
+<b class="fc"><i>101</i>&nbsp;		Student student = retrieveStudent(studentId);</b>
+<i>102</i>&nbsp;
+<b class="fc"><i>103</i>&nbsp;		if (student == null) {</b>
+<b class="nc"><i>104</i>&nbsp;			return null;</b>
+<i>105</i>&nbsp;		}
+<i>106</i>&nbsp;
+<b class="fc"><i>107</i>&nbsp;		String randomId = new BigInteger(130, random).toString(32);</b>
+<b class="fc"><i>108</i>&nbsp;		course.setId(randomId);</b>
+<i>109</i>&nbsp;
+<b class="fc"><i>110</i>&nbsp;		student.getCourses().add(course);</b>
+<i>111</i>&nbsp;
+<b class="fc"><i>112</i>&nbsp;		return course;</b>
+<i>113</i>&nbsp;	}
+<i>114</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-10-22 12:35</div>
+</div>
+</body>
+</html>
