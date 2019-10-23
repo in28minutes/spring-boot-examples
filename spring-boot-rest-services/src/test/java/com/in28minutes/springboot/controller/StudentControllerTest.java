@@ -2,7 +2,9 @@ package com.in28minutes.springboot.controller;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +43,18 @@ public class StudentControllerTest {
 	String exampleCourseJson = "{\"name\":\"Spring\",\"description\":\"10 Steps\",\"steps\":[\"Learn Maven\",\"Import Project\",\"First Example\",\"Second Example\"]}";
 
 	@Test
+	public void retrieveCoursesForStudents() throws Exception{
+		List<Course> mockList = new ArrayList<>();
+		mockList.add(mockCourse);
+		Mockito.when(studentService.retrieveCourses(Mockito.anyString())).thenReturn(mockList);
+
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/students/Student1/courses").accept(MediaType.APPLICATION_JSON);
+
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		assertEquals(200,result.getResponse().getStatus());
+	}
+
+	@Test
 	public void retrieveDetailsForCourse() throws Exception {
 
 		Mockito.when(
@@ -54,7 +68,7 @@ public class StudentControllerTest {
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
 		System.out.println(result.getResponse());
-		String expected = "{id:Course1,name:Spring,description:10 Steps}";
+		String expected = "{\"id\":\"Course1\",\"name\":\"Spring\",\"description\":\"10 Steps\"}";
 
 		//{"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
 
@@ -63,7 +77,7 @@ public class StudentControllerTest {
 	}
 
 	@Test
-	public void createStudentCourse() throws Exception {
+	public void registerStudentForCourse() throws Exception {
 		Course mockCourse = new Course("1", "Smallest Number", "1", Arrays
 				.asList("1", "2", "3", "4"));
 
@@ -79,14 +93,23 @@ public class StudentControllerTest {
 				.contentType(MediaType.APPLICATION_JSON);
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-
 		MockHttpServletResponse response = result.getResponse();
-
 		assertEquals(HttpStatus.CREATED.value(), response.getStatus());
-
 		assertEquals("http://localhost/students/Student1/courses/1", response
 				.getHeader(HttpHeaders.LOCATION));
+	}
 
+	@Test
+	public void registerStudentForCourseError() throws Exception{
+		Mockito.when(studentService.addCourse(Mockito.anyString(), Mockito.any(Course.class)))
+				.thenReturn(null);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+				"/students/Student1/courses")
+				.accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
+				.contentType(MediaType.APPLICATION_JSON);
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		MockHttpServletResponse response = result.getResponse();
+		assertEquals("",response.getContentAsString());
 	}
 
 }

@@ -13,9 +13,4 @@ public class DevelopmentOnlyConfiguration {
 	public String dummy() {
 		return "something";
 	}
-
-	@Bean
-	public String anotherBean(){
-		return "Dev bean";
-	}
 }

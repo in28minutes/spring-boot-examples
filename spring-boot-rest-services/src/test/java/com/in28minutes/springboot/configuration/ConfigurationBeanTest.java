@@ -27,14 +27,8 @@ public class ConfigurationBeanTest {
     }
 
     @Test
-    @Profile("prod")
     public void anotherBean() {
         assertEquals("Production bean",anotherBean);
     }
 
-    @Test
-    @Profile("dev")
-    public void anotherBeanTest() {
-        assertEquals("Dev bean",anotherBean);
-    }
 }

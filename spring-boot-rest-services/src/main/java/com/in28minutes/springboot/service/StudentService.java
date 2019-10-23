@@ -79,15 +79,13 @@ public class StudentService {
 		return null;
 	}
 
-	private SecureRandom random = new SecureRandom();
-
 	public Course addCourse(String studentId, Course course) {
 		Student student = retrieveStudent(studentId);
 
 		if (student == null) {
 			return null;
 		}
-
+		SecureRandom random = new SecureRandom();
 		String randomId = new BigInteger(130, random).toString(32);
 		course.setId(randomId);
 
