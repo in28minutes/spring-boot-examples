@@ -15,11 +15,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.service.StudentService;
 
+import javax.validation.Valid;
+
 @RestController
 public class StudentController {
 
-	@Autowired
 	private StudentService studentService;
+	@Autowired
+	public StudentController(StudentService studentService){
+		this.studentService=studentService;
+	}
 
 	@GetMapping("/students/{studentId}/courses")
 	public List<Course> retrieveCoursesForStudent(@PathVariable String studentId) {
@@ -28,7 +33,7 @@ public class StudentController {
 
 	@PostMapping("/students/{studentId}/courses")
 	public ResponseEntity<Void> registerStudentForCourse(
-			@PathVariable String studentId, @RequestBody Course newCourse) {
+			@PathVariable String studentId, @Valid @RequestBody Course newCourse) {
 
 		Course course = studentService.addCourse(studentId, newCourse);
 

@@ -1,4 +1,4 @@
-package com.in28minutes.springboot.controller;
+package com.in28minutes.springboot;
 
 import static org.junit.Assert.assertTrue;
 
@@ -52,7 +52,9 @@ public class StudentControllerIT {
 				createURLWithPort("/students/Student1/courses/Course1"),
 				HttpMethod.GET, entity, String.class);
 
-		String expected = "{id:Course1,name:Spring,description:10Steps}";
+
+		System.out.println(response.getBody());
+		String expected = "{\"id\":\"Course1\",\"name\":\"Spring\",\"description\":\"10 Steps\",\"steps\":[\"Learn Maven\",\"Import Project\",\"First Example\",\"Second Example\"]}";
 
 		JSONAssert.assertEquals(expected, response.getBody(), false);
 	}
@@ -81,7 +83,7 @@ public class StudentControllerIT {
 	}
 
 	private String createHttpAuthenticationHeaderValue(String userId,
-			String password) {
+													   String password) {
 
 		String auth = userId + ":" + password;
 

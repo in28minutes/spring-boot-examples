@@ -1,4 +1,7 @@
-package com.in28minutes.springboot.jpa;
+package com.in28minutes.springboot.model;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Setter @Getter
 public class User {
 
 	@Id
@@ -24,21 +28,8 @@ public class User {
 		this.role = role;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", role=" + role + "]";
 	}
-
 }

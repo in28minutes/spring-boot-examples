@@ -53,10 +53,10 @@ public class StudentControllerTest {
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		System.out.println(result.getResponse());
-		String expected = "{id:Course1,name:Spring,description:10 Steps}";
+		System.out.println(result.getResponse().getContentAsString());
+		String expected = "{\"id\":\"Course1\",\"name\":\"Spring\",\"description\":\"10 Steps\",\"steps\":[\"Learn Maven\",\"Import Project\",\"First Example\",\"Second Example\"]}";
 
-		//{"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
+//{"id":"Course1","name":"Spring","description":"10 Steps","steps":["Learn Maven","Import Project","First Example","Second Example"]}
 
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);

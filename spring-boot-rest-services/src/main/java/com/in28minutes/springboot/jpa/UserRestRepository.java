@@ -2,6 +2,7 @@ package com.in28minutes.springboot.jpa;
 
 import java.util.List;
 
+import com.in28minutes.springboot.model.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
