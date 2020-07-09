@@ -12,11 +12,14 @@ import com.in28minutes.springboot.configuration.BasicConfiguration;
 @RestController
 public class WelcomeController {
 
-	@Autowired
 	private WelcomeService service;
+	private BasicConfiguration configuration;
 
 	@Autowired
-	private BasicConfiguration configuration;
+	public WelcomeController(WelcomeService service, BasicConfiguration configuration){
+		this.service = service;
+		this.configuration = configuration;
+	}
 
 	@RequestMapping("/welcome")
 	public String welcome() {

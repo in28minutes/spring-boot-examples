@@ -1,19 +1,26 @@
 package com.in28minutes.springboot.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Getter
+@Setter
+@Entity
 public class Course {
+	@Id
 	private String id;
 	private String name;
 	private String description;
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> steps;
 
-	// Needed by Caused by: com.fasterxml.jackson.databind.JsonMappingException:
-	// Can not construct instance of com.in28minutes.springboot.model.Course:
-	// no suitable constructor found, can not deserialize from Object value
-	// (missing default constructor or creator, or perhaps need to add/enable
-	// type information?)
-	public Course() {
+	protected Course() {
 
 	}
 
@@ -23,26 +30,6 @@ public class Course {
 		this.name = name;
 		this.description = description;
 		this.steps = steps;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public List<String> getSteps() {
-		return steps;
 	}
 
 	@Override

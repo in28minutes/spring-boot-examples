@@ -9,8 +9,6 @@ import org.springframework.context.ApplicationContext;
 public class StudentApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(
-				StudentApplication.class, args);
-		//System.out.println(ctx);
+		SpringApplication.run(StudentApplication.class, args);
 	}
 }
