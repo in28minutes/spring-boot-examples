@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -25,7 +26,8 @@ import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.service.StudentService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = StudentController.class, secure = false)
+@WebMvcTest(value = StudentController.class)
+@WithMockUser
 public class StudentControllerTest {
 
 	@Autowired
@@ -34,11 +36,11 @@ public class StudentControllerTest {
 	@MockBean
 	private StudentService studentService;
 
-	Course mockCourse = new Course("Course1", "Spring", "10 Steps", Arrays
+	Course mockCourse = new Course("Course1", "Spring", "10Steps", Arrays
 			.asList("Learn Maven", "Import Project", "First Example",
 					"Second Example"));
 
-	String exampleCourseJson = "{\"name\":\"Spring\",\"description\":\"10 Steps\",\"steps\":[\"Learn Maven\",\"Import Project\",\"First Example\",\"Second Example\"]}";
+	String exampleCourseJson = "{\"name\":\"Spring\",\"description\":\"10Steps\",\"steps\":[\"Learn Maven\",\"Import Project\",\"First Example\",\"Second Example\"]}";
 
 	@Test
 	public void retrieveDetailsForCourse() throws Exception {
@@ -54,7 +56,7 @@ public class StudentControllerTest {
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
 		System.out.println(result.getResponse());
-		String expected = "{id:Course1,name:Spring,description:10 Steps}";
+		String expected = "{id:Course1,name:Spring,description:10Steps}";
 
 		//{"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
 

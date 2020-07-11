@@ -1,15 +1,15 @@
 package com.in28minutes.springboot.rest.example.student;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,15 +36,15 @@ public class StudentResource {
 	@GetMapping("/students/{id}")
 	@ApiOperation(value = "Find student by id",
     notes = "Also returns a link to retrieve all students with rel - all-students")
-	public Resource<Student> retrieveStudent(@PathVariable long id) {
+	public EntityModel<Student> retrieveStudent(@PathVariable long id) {
 		Optional<Student> student = studentRepository.findById(id);
 
 		if (!student.isPresent())
 			throw new StudentNotFoundException("id-" + id);
 
-		Resource<Student> resource = new Resource<Student>(student.get());
+		EntityModel<Student> resource = EntityModel.of(student.get());
 
-		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+		WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
 
 		resource.add(linkTo.withRel("all-students"));
 
