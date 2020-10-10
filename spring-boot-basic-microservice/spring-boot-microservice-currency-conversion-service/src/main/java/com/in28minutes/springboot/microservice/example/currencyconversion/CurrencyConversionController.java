@@ -28,9 +28,10 @@ public class CurrencyConversionController {
 		Map<String, String> uriVariables = new HashMap<>();
 		uriVariables.put("from", from);
 		uriVariables.put("to", to);
+		ServiceInstance serviceInstance = loadBalancer.choose("forex-service");
 
 		ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
-				"http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class,
+				serviceInstance.getUri().toString() + "/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class,
 				uriVariables);
 
 		CurrencyConversionBean response = responseEntity.getBody();
