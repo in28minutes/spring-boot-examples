@@ -1,9 +1,8 @@
 package com.in28minutes.springboot.jpa.hibernate.h2.example.student;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+// Changed from javax to jakarta
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 @Entity
 public class Student {
 	@Id

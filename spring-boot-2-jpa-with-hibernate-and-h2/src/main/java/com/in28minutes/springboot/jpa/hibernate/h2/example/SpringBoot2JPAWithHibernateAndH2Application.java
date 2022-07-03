@@ -13,7 +13,7 @@ import com.in28minutes.springboot.jpa.hibernate.h2.example.student.StudentReposi
 @SpringBootApplication
 public class SpringBoot2JPAWithHibernateAndH2Application implements CommandLineRunner {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	StudentRepository repository;
