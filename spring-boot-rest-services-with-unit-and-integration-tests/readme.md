@@ -44,15 +44,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
+		<version>3.0.0-M3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
@@ -86,43 +83,28 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    
 </project>
 ```
 ---
@@ -282,8 +264,7 @@ public class Student {
 	private String description;
 	private List<Course> courses;
 
-	public Student(String id, String name, String description,
-			List<Course> courses) {
+	public Student(String id, String name, String description, List<Course> courses) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -325,8 +306,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"Student [id=%s, name=%s, description=%s, courses=%s]", id,
+		return String.format("Student [id=%s, name=%s, description=%s, courses=%s]", id,
 				name, description, courses);
 	}
 }
@@ -344,99 +324,98 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.model.Student;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class StudentService {
 
-	private static List<Student> students = new ArrayList<>();
+    private static List<Student> students = new ArrayList<>();
 
-	static {
-		//Initialize Data
-		Course course1 = new Course("Course1", "Spring", "10 Steps", Arrays
-				.asList("Learn Maven", "Import Project", "First Example",
-						"Second Example"));
-		Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
-				Arrays.asList("Learn Maven", "Import Project", "First Example",
-						"Second Example"));
-		Course course3 = new Course("Course3", "Spring Boot", "6K Students",
-				Arrays.asList("Learn Maven", "Learn Spring",
-						"Learn Spring MVC", "First Example", "Second Example"));
-		Course course4 = new Course("Course4", "Maven",
-				"Most popular maven course on internet!", Arrays.asList(
-						"Pom.xml", "Build Life Cycle", "Parent POM",
-						"Importing into Eclipse"));
+    static {
+        //Initialize Data
+        Course course1 = new Course("Course1", "Spring", "10 Steps", Arrays
+                .asList("Learn Maven", "Import Project", "First Example",
+                        "Second Example"));
+        Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
+                Arrays.asList("Learn Maven", "Import Project", "First Example",
+                        "Second Example"));
+        Course course3 = new Course("Course3", "Spring Boot", "6K Students",
+                Arrays.asList("Learn Maven", "Learn Spring",
+                        "Learn Spring MVC", "First Example", "Second Example"));
+        Course course4 = new Course("Course4", "Maven",
+                "Most popular maven course on internet!", Arrays.asList(
+                "Pom.xml", "Build Life Cycle", "Parent POM",
+                "Importing into Eclipse"));
 
-		Student ranga = new Student("Student1", "Ranga Karanam",
-				"Hiker, Programmer and Architect", new ArrayList<>(Arrays
-						.asList(course1, course2, course3, course4)));
+        Student ranga = new Student("Student1", "Ranga Karanam",
+                "Hiker, Programmer and Architect", new ArrayList<>(Arrays
+                .asList(course1, course2, course3, course4)));
 
-		Student satish = new Student("Student2", "Satish T",
-				"Hiker, Programmer and Architect", new ArrayList<>(Arrays
-						.asList(course1, course2, course3, course4)));
+        Student satish = new Student("Student2", "Satish T",
+                "Hiker, Programmer and Architect", new ArrayList<>(Arrays
+                .asList(course1, course2, course3, course4)));
 
-		students.add(ranga);
-		students.add(satish);
-	}
+        students.add(ranga);
+        students.add(satish);
+    }
 
-	public List<Student> retrieveAllStudents() {
-		return students;
-	}
+    public List<Student> retrieveAllStudents() {
+        return students;
+    }
 
-	public Student retrieveStudent(String studentId) {
-		for (Student student : students) {
-			if (student.getId().equals(studentId)) {
-				return student;
-			}
-		}
-		return null;
-	}
+    public Student retrieveStudent(String studentId) {
+        for (Student student : students) {
+            if (student.getId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
 
-	public List<Course> retrieveCourses(String studentId) {
-		Student student = retrieveStudent(studentId);
+    public List<Course> retrieveCourses(String studentId) {
+        Student student = retrieveStudent(studentId);
 
-		if (student == null) {
-			return null;
-		}
+        if (student == null) {
+            return null;
+        }
 
-		return student.getCourses();
-	}
+        return student.getCourses();
+    }
 
-	public Course retrieveCourse(String studentId, String courseId) {
-		Student student = retrieveStudent(studentId);
+    public Course retrieveCourse(String studentId, String courseId) {
+        Student student = retrieveStudent(studentId);
 
-		if (student == null) {
-			return null;
-		}
+        if (student == null) {
+            return null;
+        }
 
-		for (Course course : student.getCourses()) {
-			if (course.getId().equals(courseId)) {
-				return course;
-			}
-		}
+        for (Course course : student.getCourses()) {
+            if (course.getId().equals(courseId)) {
+                return course;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	private SecureRandom random = new SecureRandom();
+    private SecureRandom random = new SecureRandom();
 
-	public Course addCourse(String studentId, Course course) {
-		Student student = retrieveStudent(studentId);
+    public Course addCourse(String studentId, Course course) {
+        Student student = retrieveStudent(studentId);
 
-		if (student == null) {
-			return null;
-		}
+        if (student == null) {
+            return null;
+        }
 
-		String randomId = new BigInteger(130, random).toString(32);
-		course.setId(randomId);
+        String randomId = new BigInteger(130, random).toString(32);
+        course.setId(randomId);
 
-		student.getCourses().add(course);
+        student.getCourses().add(course);
 
-		return course;
-	}
+        return course;
+    }
 }
 ```
 ---

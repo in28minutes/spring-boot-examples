@@ -47,9 +47,8 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"Course [id=%s, name=%s, description=%s, steps=%s]", id, name,
-				description, steps);
+		return String.format("Course [id=%s, name=%s, description=%s, steps=%s]",
+				id, name, description, steps);
 	}
 
 	@Override
@@ -70,11 +69,8 @@ public class Course {
 			return false;
 		Course other = (Course) obj;
 		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+			return other.id == null;
+		} else return id.equals(other.id);
 	}
 
 }
