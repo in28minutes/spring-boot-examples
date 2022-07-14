@@ -3,42 +3,38 @@ package com.in28minutes.springboot.service;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import org.springframework.stereotype.Component;
 
 import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.model.Student;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class StudentService {
 
-	private static List<Student> students = new ArrayList<>();
+	private static final List<Student> students = new ArrayList<>();
+
+	private final SecureRandom random = new SecureRandom();
 
 	static {
 		//Initialize Data
-		Course course1 = new Course("Course1", "Spring", "10 Steps", Arrays
-				.asList("Learn Maven", "Import Project", "First Example",
-						"Second Example"));
-		Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
-				Arrays.asList("Learn Maven", "Import Project", "First Example",
-						"Second Example"));
-		Course course3 = new Course("Course3", "Spring Boot", "6K Students",
-				Arrays.asList("Learn Maven", "Learn Spring",
-						"Learn Spring MVC", "First Example", "Second Example"));
-		Course course4 = new Course("Course4", "Maven",
-				"Most popular maven course on internet!", Arrays.asList(
-						"Pom.xml", "Build Life Cycle", "Parent POM",
-						"Importing into Eclipse"));
+		Course courseOne = new Course("Course1", "Spring", "10 Steps",
+				List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
-		Student ranga = new Student("Student1", "Ranga Karanam",
-				"Hiker, Programmer and Architect", new ArrayList<>(Arrays
-						.asList(course1, course2, course3, course4)));
+		Course courseTwo = new Course("Course2", "Spring MVC", "10 Examples",
+				List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
-		Student satish = new Student("Student2", "Satish T",
-				"Hiker, Programmer and Architect", new ArrayList<>(Arrays
-						.asList(course1, course2, course3, course4)));
+		Course courseThree = new Course("Course3", "Spring Boot", "6K Students",
+				List.of("Learn Maven", "Learn Spring", "Learn Spring MVC", "First Example", "Second Example"));
+
+		Course courseFour = new Course("Course4", "Maven", "Most popular maven course on internet!",
+				List.of("Pom.xml", "Build Life Cycle", "Parent POM", "Importing into Eclipse"));
+
+		Student ranga = new Student("Student1", "Ranga Karanam", "Hiker, Programmer and Architect",
+				new ArrayList<>(List.of(courseOne, courseTwo, courseThree, courseFour)));
+
+		Student satish = new Student("Student2", "Satish T", "Hiker, Programmer and Architect",
+				new ArrayList<>(List.of(courseOne, courseTwo, courseThree, courseFour)));
 
 		students.add(ranga);
 		students.add(satish);
@@ -60,11 +56,7 @@ public class StudentService {
 	public List<Course> retrieveCourses(String studentId) {
 		Student student = retrieveStudent(studentId);
 
-		if (student == null) {
-			return null;
-		}
-
-		return student.getCourses();
+		return student == null ? null : student.getCourses();
 	}
 
 	public Course retrieveCourse(String studentId, String courseId) {
@@ -82,8 +74,6 @@ public class StudentService {
 
 		return null;
 	}
-
-	private SecureRandom random = new SecureRandom();
 
 	public Course addCourse(String studentId, Course course) {
 		Student student = retrieveStudent(studentId);
