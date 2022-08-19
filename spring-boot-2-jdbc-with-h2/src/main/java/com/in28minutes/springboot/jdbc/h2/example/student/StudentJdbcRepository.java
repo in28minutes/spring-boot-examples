@@ -12,42 +12,42 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class StudentJdbcRepository {
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
-	class StudentRowMapper implements RowMapper<Student> {
-		@Override
-		public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Student student = new Student();
-			student.setId(rs.getLong("id"));
-			student.setName(rs.getString("name"));
-			student.setPassportNumber(rs.getString("passport_number"));
-			return student;
-		}
+    static class StudentRowMapper implements RowMapper<Student> {
+        @Override
+        public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Student student = new Student();
+            student.setId(rs.getLong("id"));
+            student.setName(rs.getString("name"));
+            student.setPassportNumber(rs.getString("passport_number"));
+            return student;
+        }
 
-	}
+    }
 
-	public List<Student> findAll() {
-		return jdbcTemplate.query("select * from student", new StudentRowMapper());
-	}
+    public List<Student> findAll() {
+        return jdbcTemplate.query("select * from student", new StudentRowMapper());
+    }
 
-	public Student findById(long id) {
-		return jdbcTemplate.queryForObject("select * from student where id=?", new Object[] { id },
-				new BeanPropertyRowMapper<Student>(Student.class));
-	}
+    public Student findById(long id) {
+        return jdbcTemplate.queryForObject("select * from student where id=?", new Object[]{id},
+                new BeanPropertyRowMapper<Student>(Student.class));
+    }
 
-	public int deleteById(long id) {
-		return jdbcTemplate.update("delete from student where id=?", new Object[] { id });
-	}
+    public void deleteById(long id) {
+        jdbcTemplate.update("delete from student where id=?", id);
+    }
 
-	public int insert(Student student) {
-		return jdbcTemplate.update("insert into student (id, name, passport_number) " + "values(?,  ?, ?)",
-				new Object[] { student.getId(), student.getName(), student.getPassportNumber() });
-	}
+    public int insert(Student student) {
+        return jdbcTemplate.update("insert into student (id, name, passport_number) " + "values(?,  ?, ?)",
+                student.getId(), student.getName(), student.getPassportNumber());
+    }
 
-	public int update(Student student) {
-		return jdbcTemplate.update("update student " + " set name = ?, passport_number = ? " + " where id = ?",
-				new Object[] { student.getName(), student.getPassportNumber(), student.getId() });
-	}
+    public int update(Student student) {
+        return jdbcTemplate.update("update student " + " set name = ?, passport_number = ? " + " where id = ?",
+                student.getName(), student.getPassportNumber(), student.getId());
+    }
 
 }
