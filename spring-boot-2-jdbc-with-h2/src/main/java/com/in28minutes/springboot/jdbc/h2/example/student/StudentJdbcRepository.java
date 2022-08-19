@@ -32,8 +32,7 @@ public class StudentJdbcRepository {
     }
 
     public Student findById(long id) {
-        return jdbcTemplate.queryForObject("select * from student where id=?", new Object[]{id},
-                new BeanPropertyRowMapper<Student>(Student.class));
+        return jdbcTemplate.queryForObject("select * from student where id=?", new BeanPropertyRowMapper<>(Student.class), id);
     }
 
     public void deleteById(long id) {
