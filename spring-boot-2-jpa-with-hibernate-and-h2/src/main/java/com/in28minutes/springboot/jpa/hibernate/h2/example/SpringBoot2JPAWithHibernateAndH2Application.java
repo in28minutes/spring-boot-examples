@@ -13,26 +13,27 @@ import com.in28minutes.springboot.jpa.hibernate.h2.example.student.StudentReposi
 @SpringBootApplication
 public class SpringBoot2JPAWithHibernateAndH2Application implements CommandLineRunner {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	StudentRepository repository;
+    @Autowired
+    StudentRepository repository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBoot2JPAWithHibernateAndH2Application.class, args);
-	}
+    @Override
+    public void run(String... args) {
 
-	@Override
-	public void run(String... args) throws Exception {
+        LOGGER.info("Student id 10001 -> {}", repository.findById(10001L));
 
-		logger.info("Student id 10001 -> {}", repository.findById(10001L));
+        LOGGER.info("Inserting -> {}", repository.save(new Student("John", "A1234657")));
 
-		logger.info("Inserting -> {}", repository.save(new Student("John", "A1234657")));
+        LOGGER.info("Update 10003 -> {}", repository.save(new Student(10001L, "Name-Updated", "New-Passport")));
 
-		logger.info("Update 10003 -> {}", repository.save(new Student(10001L, "Name-Updated", "New-Passport")));
+        repository.deleteById(10002L);
 
-		repository.deleteById(10002L);
+        LOGGER.info("All users -> {}", repository.findAll());
+    }
 
-		logger.info("All users -> {}", repository.findAll());
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBoot2JPAWithHibernateAndH2Application.class, args);
+    }
+
 }
