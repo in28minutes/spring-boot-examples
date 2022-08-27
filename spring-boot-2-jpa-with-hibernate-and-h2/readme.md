@@ -19,7 +19,7 @@
 - [Learning Path 04 - Learn Cloud with Spring Boot, AWS, Azure and PCF](https://links.in28minutes.com/in28minutes-LP-04)
 - [Learning Path 05 - Learn AWS with Microservices, Docker and Kubernetes](https://links.in28minutes.com/in28minutes-LP-05)
 
-## Complete Code Example
+## Example of Complete Code
 
 ### /pom.xml
 
@@ -28,6 +28,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.0-M4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <groupId>com.in28minutes.springboot.rest.example</groupId>
     <artifactId>spring-boot-2-jpa-with-hibernate-and-h2</artifactId>
@@ -37,18 +43,8 @@
     <name>spring-boot-2-jpa-with-hibernate-and-h2</name>
     <description>Spring Boot 2, Hibernate, JPA and H2 - Example Project</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M3</version> <!-- Changed from 2.3.1.RELEASE -->
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version> <!-- Changed from 1.8 -->
-        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
@@ -86,7 +82,6 @@
             </plugin>
         </plugins>
     </build>
-
     <repositories>
         <repository>
             <id>spring-milestones</id>
@@ -132,28 +127,29 @@ import com.in28minutes.springboot.jpa.hibernate.h2.example.student.StudentReposi
 @SpringBootApplication
 public class SpringBoot2JPAWithHibernateAndH2Application implements CommandLineRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     StudentRepository repository;
+
+    @Override
+    public void run(String... args) {
+
+        LOGGER.info("Student id 10001 -> {}", repository.findById(10001L));
+
+        LOGGER.info("Inserting -> {}", repository.save(new Student("John", "A1234657")));
+
+        LOGGER.info("Update 10003 -> {}", repository.save(new Student(10001L, "Name-Updated", "New-Passport")));
+
+        repository.deleteById(10002L);
+
+        LOGGER.info("All users -> {}", repository.findAll());
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBoot2JPAWithHibernateAndH2Application.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
-        logger.info("Student id 10001 -> {}", repository.findById(10001L));
-
-        logger.info("Inserting -> {}", repository.save(new Student("John", "A1234657")));
-
-        logger.info("Update 10003 -> {}", repository.save(new Student(10001L, "Name-Updated", "New-Passport")));
-
-        repository.deleteById(10002L);
-
-        logger.info("All users -> {}", repository.findAll());
-    }
 }
 ```
 
@@ -165,6 +161,7 @@ public class SpringBoot2JPAWithHibernateAndH2Application implements CommandLineR
 package com.in28minutes.springboot.jpa.hibernate.h2.example.student;
 
 // Changed from javax to jakarta
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

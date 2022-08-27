@@ -12,58 +12,61 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@RequestMapping("/students")
 public class StudentResource {
+	private static final String ID = "/{id}";
 
-	@Autowired
-	private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-	@GetMapping("/students")
-	public List<Student> retrieveAllStudents() {
-		return studentRepository.findAll();
-	}
+    @GetMapping
+    public List<Student> retrieveAllStudents() {
+        return studentRepository.findAll();
+    }
 
-	@GetMapping("/students/{id}")
+	@GetMapping(ID)
 	public Student retrieveStudent(@PathVariable long id) {
 		Optional<Student> student = studentRepository.findById(id);
 
-		if (!student.isPresent())
+		if (student.isEmpty())
 			throw new StudentNotFoundException("id-" + id);
 
 		return student.get();
 	}
 
-	@DeleteMapping("/students/{id}")
-	public void deleteStudent(@PathVariable long id) {
-		studentRepository.deleteById(id);
-	}
+    @DeleteMapping(ID)
+    public void deleteStudent(@PathVariable long id) {
+        studentRepository.deleteById(id);
+    }
 
-	@PostMapping("/students")
-	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
-		Student savedStudent = studentRepository.save(student);
+    @PostMapping
+    public ResponseEntity<Object> createStudent(@RequestBody Student student) {
+        Student savedStudent = studentRepository.save(student);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedStudent.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedStudent.getId()).toUri();
 
-		return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).build();
 
-	}
-	
-	@PutMapping("/students/{id}")
-	public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
+    }
+
+    @PutMapping(ID)
+    public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
 
 		Optional<Student> studentOptional = studentRepository.findById(id);
 
-		if (!studentOptional.isPresent())
-			return ResponseEntity.notFound().build();
+        if (studentOptional.isEmpty())
+            return ResponseEntity.notFound().build();
 
-		student.setId(id);
-		
-		studentRepository.save(student);
+        student.setId(id);
 
-		return ResponseEntity.noContent().build();
-	}
+        studentRepository.save(student);
+
+        return ResponseEntity.noContent().build();
+    }
 }
