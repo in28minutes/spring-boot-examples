@@ -1,4 +1,5 @@
 package com.in28minutes.springboot.rest.example.dynamicfiltering;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,37 +14,31 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 @RestController
 public class FilteringController {
 
-  // field1,field2
-  @GetMapping("/filtering")
-  public MappingJacksonValue retrieveSomeBean() {
-    SomeBean someBean = new SomeBean("value1", "value2", "value3");
+    // field1,field2
+    @GetMapping("/filtering")
+    public MappingJacksonValue retrieveSomeBean() {
+        SomeBean someBean = new SomeBean("value1", "value2", "value3");
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+        MappingJacksonValue mapping = new MappingJacksonValue(someBean);
+        mapping.setFilters(filters);
 
-    SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+        return mapping;
+    }
 
-    FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+    // field2, field3
+    @GetMapping("/filtering-list")
+    public MappingJacksonValue retrieveListOfSomeBeans() {
+        List<SomeBean> list = List.of(
+                new SomeBean("value1", "value2", "value3"),
+                new SomeBean("value12", "value22", "value32")
+        );
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field2", "field3");
+        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+        MappingJacksonValue mapping = new MappingJacksonValue(list);
+        mapping.setFilters(filters);
 
-    MappingJacksonValue mapping = new MappingJacksonValue(someBean);
-
-    mapping.setFilters(filters);
-
-    return mapping;
-  }
-
-  // field2, field3
-  @GetMapping("/filtering-list")
-  public MappingJacksonValue retrieveListOfSomeBeans() {
-    List<SomeBean> list = Arrays.asList(new SomeBean("value1", "value2", "value3"),
-        new SomeBean("value12", "value22", "value32"));
-
-    SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field2", "field3");
-
-    FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
-
-    MappingJacksonValue mapping = new MappingJacksonValue(list);
-
-    mapping.setFilters(filters);
-
-    return mapping;
-  }
+        return mapping;
+    }
 
 }
