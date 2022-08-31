@@ -12,7 +12,7 @@
 [![Image](https://www.springboottutorial.com/images/Course-Go-Full-Stack-With-Spring-Boot-and-React.png "Go Full Stack with Spring Boot and React")](https://links.in28minutes.com/in28minutes-React)
 
 
-## Reskill with the Amazing in28Minutes Learning Paths
+## The Amazing in28Minutes Learning Paths will help you reskill.
 
 - [Learning Path 01 - Spring and Spring Boot Web Applications and API Developer](https://links.in28minutes.com/in28minutes-LP-01)
 - [Learning Path 02 - Full Stack Developer with Spring Boot, React & Angular](https://links.in28minutes.com/in28minutes-LP-02)
@@ -22,7 +22,7 @@
 
 
 
-## Complete Code Example
+## Example Of Complete Code
 
 
 ### /pom.xml
@@ -30,113 +30,94 @@
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.0-M4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-	<groupId>com.in28minutes.springboot.rest.example</groupId>
-	<artifactId>spring-boot-2-rest-service-validation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>com.in28minutes.springboot.rest.example</groupId>
+    <artifactId>spring-boot-2-rest-service-validation</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>spring-boot-2-rest-service</name>
-	<description>Spring Boot 2 and REST - Example Project</description>
+    <name>spring-boot-2-rest-service</name>
+    <description>Spring Boot 2 and REST - Example Project</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-	</properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
 ```
@@ -146,45 +127,43 @@
 
 ```java
 package com.in28minutes.springboot.rest.example.exception;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.in28minutes.springboot.rest.example.student.StudentNotFoundException;
 
-@ControllerAdvice
-@RestController
+@RestControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(Exception.class)
-  public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
-        request.getDescription(false));
-    return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
+                request.getDescription(false));
 
-  @ExceptionHandler(StudentNotFoundException.class)
-  public final ResponseEntity<Object> handleUserNotFoundException(StudentNotFoundException ex, WebRequest request) {
-    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
-        request.getDescription(false));
-    return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
-  }
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
-  @Override
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-      HttpHeaders headers, HttpStatus status, WebRequest request) {
-    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), "Validation Failed",
-        ex.getBindingResult().toString());
-    return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
-  } 
+    @ExceptionHandler(StudentNotFoundException.class)
+    public final ResponseEntity<Object> handleUserNotFoundException(StudentNotFoundException exception, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), "Validation Failed", exception.getBindingResult().toString());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }
 ```
 ---
@@ -193,31 +172,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 ```java
 package com.in28minutes.springboot.rest.example.exception;
-import java.util.Date;
 
-public class ExceptionResponse {
-  private Date timestamp;
-  private String message;
-  private String details;
+import java.time.LocalDateTime;
 
-  public ExceptionResponse(Date timestamp, String message, String details) {
-    super();
-    this.timestamp = timestamp;
-    this.message = message;
-    this.details = details;
-  }
-
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public String getDetails() {
-    return details;
-  }
+public record ExceptionResponse(LocalDateTime timestamp,
+                                String message,
+                                String details) {
 
 }
 ```
@@ -257,7 +217,7 @@ public class Student {
 	@GeneratedValue
 	private Long id;
 	
-	@Size(min=2, message="Name should have atleast 2 characters")
+	@Size(min=2, message="Name should have at least 2 characters")
 	private String name;
 	
 	private String passportNumber;
@@ -334,18 +294,17 @@ public interface StudentRepository extends JpaRepository<Student, Long>{
 ```java
 package com.in28minutes.springboot.rest.example.student;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -353,66 +312,68 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@RequestMapping("/students")
 public class StudentResource {
 
-	@Autowired
-	private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-	@GetMapping("/students")
-	public List<Student> retrieveAllStudents() {
-		return studentRepository.findAll();
-	}
+    @GetMapping()
+    public List<Student> retrieveAllStudents() {
+        return studentRepository.findAll();
+    }
 
-	@GetMapping("/students/{id}")
-	public Resource<Student> retrieveStudent(@PathVariable long id) {
-		Optional<Student> student = studentRepository.findById(id);
+    @GetMapping("/{id}")
+    public EntityModel<Student> retrieveStudent(@PathVariable long id) {
+        Optional<Student> student = studentRepository.findById(id);
 
-		if (!student.isPresent())
-			throw new StudentNotFoundException("id-" + id);
+        if (student.isEmpty())
+            throw new StudentNotFoundException("id-" + id);
 
-		Resource<Student> resource = new Resource<Student>(student.get());
+        EntityModel<Student> resource = EntityModel.of(student.get());
 
-		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+        WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
 
-		resource.add(linkTo.withRel("all-students"));
+        resource.add(linkTo.withRel("all-students"));
 
-		return resource;
-	}
+        return resource;
+    }
 
-	@DeleteMapping("/students/{id}")
-	public void deleteStudent(@PathVariable long id) {
-		studentRepository.deleteById(id);
-	}
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable long id) {
+        studentRepository.deleteById(id);
+    }
 
-	@PostMapping("/students")
-	public ResponseEntity<Object> createStudent(@Valid @RequestBody Student student) {
-		Student savedStudent = studentRepository.save(student);
+    @PostMapping()
+    public ResponseEntity<Object> createStudent(@Valid @RequestBody Student student) {
+        Student savedStudent = studentRepository.save(student);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedStudent.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedStudent.getId()).toUri();
 
-		return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).build();
 
-	}
-	
-	@PutMapping("/students/{id}")
-	public ResponseEntity<Object> updateStudent(@Valid @RequestBody Student student, @PathVariable long id) {
+    }
 
-		Optional<Student> studentOptional = studentRepository.findById(id);
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateStudent(@Valid @RequestBody Student student, @PathVariable long id) {
 
-		if (!studentOptional.isPresent())
-			return ResponseEntity.notFound().build();
+        Optional<Student> studentOptional = studentRepository.findById(id);
 
-		student.setId(id);
-		
-		studentRepository.save(student);
+        if (studentOptional.isEmpty())
+            return ResponseEntity.notFound().build();
 
-		return ResponseEntity.noContent().build();
-	}
+        student.setId(id);
+
+        studentRepository.save(student);
+
+        return ResponseEntity.noContent().build();
+    }
 }
 ```
 ---
@@ -420,6 +381,18 @@ public class StudentResource {
 ### /src/main/resources/application.properties
 
 ```properties
+# Enabling H2 Console
+spring.h2.console.enabled=true
+#Turn Statistics on
+spring.jpa.properties.hibernate.generate_statistics=true
+#logging.level.org.hibernate.stat=debug
+# Show all queries
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+logging.level.org.hibernate.type=trace
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.data.jpa.repositories.bootstrap-mode=default
+spring.jpa.defer-datasource-initialization=true
 ```
 ---
 
@@ -439,19 +412,22 @@ values(10002,'Ravi', 'A1234568');
 ```java
 package com.in28minutes.springboot.rest.example;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+// replaced @RunWith with @ExtendWith
+// replaced SpringRunner.class with SpringExtension.class
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class SpringBoot2RestServiceApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
 
 }
+
 ```
 ---
