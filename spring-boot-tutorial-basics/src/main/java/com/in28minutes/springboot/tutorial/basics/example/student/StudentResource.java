@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StudentResource {
 
-	@Autowired
-	private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-	@GetMapping("/students")
-	public List<Student> retrieveAllStudents() {
-		return studentRepository.findAll();
-	}
+    @GetMapping("/students")
+    public List<Student> retrieveAllStudents() {
+        return studentRepository.findAll();
+    }
 }
