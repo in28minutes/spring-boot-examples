@@ -4,22 +4,23 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BusinessService {
-	private DataService dataService;
 
-	public BusinessService(DataService dataService) {
-		super();
-		this.dataService = dataService;
-	}
+    private final DataService dataService;
 
-	public int findTheGreatestFromAllData() {
-		int[] data = dataService.retrieveAllData();
-		int greatest = Integer.MIN_VALUE;
+    public BusinessService(DataService dataService) {
+        super();
+        this.dataService = dataService;
+    }
 
-		for (int value : data) {
-			if (value > greatest) {
-				greatest = value;
-			}
-		}
-		return greatest;
-	}
+    public int findTheGreatestFromAllData() {
+        int[] data = dataService.retrieveAllData();
+        int greatest = Integer.MIN_VALUE;
+
+        for (int value : data) {
+            if (value > greatest) {
+                greatest = value;
+            }
+        }
+        return greatest;
+    }
 }

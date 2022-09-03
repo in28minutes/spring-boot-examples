@@ -7,12 +7,12 @@ import com.in28minutes.springboot.tutorial.basics.example.aop.data.Dao2;
 
 @Service
 public class Business2 {
-	
-	@Autowired
-	private Dao2 dao2;
-	
-	public String calculateSomething(){
-		//Business Logic
-		return dao2.retrieveSomething();
-	}
+
+    @Autowired
+    private Dao2 dao2;
+
+    public String calculateSomething() {
+        //Business Logic
+        return dao2.retrieveSomething();
+    }
 }
