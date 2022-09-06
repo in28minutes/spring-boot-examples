@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WelcomeResource {
 
-	@Value("${welcome.message}")
-	private String welcomeMessage;
-
-	@GetMapping("/welcome")
-	public String retrieveWelcomeMessage() {
-		// Complex Method
-		return welcomeMessage;
-	}
+    @Value("${welcome.message}")
+    private String welcomeMessage;
 
 	@Autowired
 	private BasicConfiguration configuration;
 
-	@RequestMapping("/dynamic-configuration")
-	public Map<String, Object> dynamicConfiguration() {
-		// Not the best practice to use a map to store differnt types!
-		Map<String, Object> map = new HashMap<>();
-		map.put("message", configuration.getMessage());
-		map.put("number", configuration.getNumber());
-		map.put("key", configuration.isValue());
-		return map;
-	}
+    @GetMapping("/welcome")
+    public String retrieveWelcomeMessage() {
+        // Complex Method
+        return welcomeMessage;
+    }
+
+    @RequestMapping("/dynamic-configuration")
+    public Map<String, Object> dynamicConfiguration() {
+        // Not the best practice to use a map to store different types!
+        Map<String, Object> configMap = new HashMap<>();
+		configMap.put("message", configuration.getMessage());
+		configMap.put("number", configuration.getNumber());
+		configMap.put("key", configuration.isValue());
+        return configMap;
+    }
 }
