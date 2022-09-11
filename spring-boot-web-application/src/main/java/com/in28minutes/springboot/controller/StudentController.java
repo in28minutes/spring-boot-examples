@@ -13,11 +13,11 @@ import com.in28minutes.springboot.service.StudentService;
 @RestController
 public class StudentController {
 
-	@Autowired
-	private StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
-	@GetMapping("/students/{studentId}/courses")
-	public List<Course> retrieveCoursesForStudent(@PathVariable String studentId) {
-		return studentService.retrieveCourses(studentId);
-	}
+    @GetMapping("/students/{studentId}/courses")
+    public List<Course> retrieveCoursesForStudent(@PathVariable String studentId) {
+        return studentService.retrieveCourses(studentId);
+    }
 }
