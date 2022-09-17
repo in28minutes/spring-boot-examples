@@ -2,119 +2,134 @@
 Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-application
 -->
 
-## Learn from the Top 5 Best Selling Courses
+## Keep Learning Every Day
+- **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
 
-[![Image](https://www.springboottutorial.com/images/Course-Master-Microservices-with-Spring-Boot-and-Spring-Cloud.png "Master Microservices with Spring Boot and Spring Cloud")](https://links.in28minutes.com/in28minutes-Microservices)
+## Check Out Our Amazing ROADMAPS
+- **1:** [AWS Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#aws-roadmap)
+- **2:** [Azure Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#azure-roadmap)
+- **3:** [Google Cloud Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#google-cloud-roadmap)
+- **4:** [Cloud Beginner Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#cloud-beginner-roadmap)
+- **5:** [DevOps Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#devops-roadmap)
+- **6:** [Java Full Stack Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-full-stack-roadmap)
+- **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
 
-[![Image](https://www.springboottutorial.com/images/Course-Spring-Framework-Master-Class---Beginner-to-Expert.png "Spring Master Class - Beginner to Expert")](https://links.in28minutes.com/in28minutes-Spring)
+## Complete Code Example
 
-[![Image](https://www.springboottutorial.com/images/Course-DevOps.png "DevOps Course")](https://links.in28minutes.com/DevOps-SBT)
-[![Image](https://www.springboottutorial.com/images/Course-go-serverless.png "Go Serverless with AWS Lambda and Azure Functions")](https://links.in28minutes.com/serverless-sbt)
-
-[![Image](https://www.springboottutorial.com/images/Course-Go-Full-Stack-With-SpringBoot-And-Angular.png "Go Full Stack with Spring Boot and Angular")](https://links.in28minutes.com/in28minutes-angular)
-
-[![Image](https://www.springboottutorial.com/images/Course-Go-Full-Stack-With-Spring-Boot-and-React.png "Go Full Stack with Spring Boot and React")](https://links.in28minutes.com/in28minutes-React)
-
-## The Amazing in28Minutes Learning Paths will help you reskill.
-
-- [Learning Path 01 - Spring and Spring Boot Web Applications and API Developer](https://links.in28minutes.com/in28minutes-LP-01)
-- [Learning Path 02 - Full Stack Developer with Spring Boot, React & Angular](https://links.in28minutes.com/in28minutes-LP-02)
-- [Learning Path 03 - Cloud Microservices Developer with Docker and Kubernetes](https://links.in28minutes.com/in28minutes-LP-03)
-- [Learning Path 04 - Learn Cloud with Spring Boot, AWS, Azure and PCF](https://links.in28minutes.com/in28minutes-LP-04)
-- [Learning Path 05 - Learn AWS with Microservices, Docker and Kubernetes](https://links.in28minutes.com/in28minutes-LP-05)
-
-## Example of Complete Code
 
 ### /pom.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M4</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.in28minutes.springboot</groupId>
-    <artifactId>student-services-security</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+	<groupId>com.in28minutes.springboot</groupId>
+	<artifactId>student-services-security</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-    <name>student-services</name>
-    <description>Demo project for Spring Boot</description>
+	<name>student-services</name>
+	<description>Demo project for Spring Boot</description>
 
-    <properties>
-        <java.version>17</java.version>
-    </properties>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.1.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+	</properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/controller/LoginController.java
@@ -124,12 +139,13 @@ package com.in28minutes.springboot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
 
-    @GetMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showLoginPage(ModelMap model) {
         model.put("name", "in28Minutes");
         return "welcome";
@@ -137,7 +153,6 @@ public class LoginController {
 
 }
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/controller/StudentController.java
@@ -158,16 +173,15 @@ import com.in28minutes.springboot.service.StudentService;
 @RestController
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
+	@Autowired
+	private StudentService studentService;
 
-    @GetMapping("/students/{studentId}/courses")
-    public List<Course> retrieveCoursesForStudent(@PathVariable String studentId) {
-        return studentService.retrieveCourses(studentId);
-    }
+	@GetMapping("/students/{studentId}/courses")
+	public List<Course> retrieveCoursesForStudent(@PathVariable String studentId) {
+		return studentService.retrieveCourses(studentId);
+	}
 }
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/model/Course.java
@@ -177,13 +191,83 @@ package com.in28minutes.springboot.model;
 
 import java.util.List;
 
-public record Course(String id,
-                     String name,
-                     String description,
-                     List<String> steps) {
+public class Course {
+	private String id;
+	private String name;
+	private String description;
+	private List<String> steps;
+
+	// Needed by Caused by: com.fasterxml.jackson.databind.JsonMappingException:
+	// Can not construct instance of com.in28minutes.springboot.model.Course:
+	// no suitable constructor found, can not deserialize from Object value
+	// (missing default constructor or creator, or perhaps need to add/enable
+	// type information?)
+	public Course() {
+
+	}
+
+	public Course(String id, String name, String description, List<String> steps) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.steps = steps;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public List<String> getSteps() {
+		return steps;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"Course [id=%s, name=%s, description=%s, steps=%s]", id, name,
+				description, steps);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Course other = (Course) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 }
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/model/Student.java
@@ -193,13 +277,61 @@ package com.in28minutes.springboot.model;
 
 import java.util.List;
 
-public record Student(String id,
-                      String name,
-                      String description,
-                      List<Course> courses) {
+public class Student {
+	private String id;
+	private String name;
+	private String description;
+	private List<Course> courses;
+
+	public Student(String id, String name, String description,
+			List<Course> courses) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.courses = courses;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"Student [id=%s, name=%s, description=%s, courses=%s]", id,
+				name, description, courses);
+	}
 }
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/security/SecurityConfig.java
@@ -207,70 +339,30 @@ public record Student(String id,
 ```java
 package com.in28minutes.springboot.security;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
-import java.util.function.Function;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-public class SecurityConfig {
-    //LDAP or Database
-    //In Memory
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	// Authentication : User --> Roles
+	protected void configure(AuthenticationManagerBuilder auth)
+			throws Exception {
+		auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance()).withUser("user1").password("secret1")
+				.roles("USER").and().withUser("admin1").password("secret1")
+				.roles("USER", "ADMIN");
+	}
 
-    //InMemoryUserDetailsManager
-    //InMemoryUserDetailsManager(UserDetails... users)
-    @Bean
-    public InMemoryUserDetailsManager createUserDetailsManager() {
-        UserDetails userDetails1 = createNewUser("admin1", "secret1");
-
-        return new InMemoryUserDetailsManager(userDetails1);
-    }
-
-    private UserDetails createNewUser(String username, String password) {
-        Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
-
-        return User.builder()
-                .passwordEncoder(passwordEncoder)
-                .username(username)
-                .password(password)
-                .roles("USER","ADMIN")
-                .build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    //All URLs are protected
-    //A login form is shown for unauthorized requests
-    //CSRF disable
-    //Frames
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
-        http.httpBasic(withDefaults());
-
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-
-        return http.build();
-    }
+	// Authorization : Role -> Access
+	protected void configure(HttpSecurity http) throws Exception {
+		http.httpBasic().and().authorizeRequests().antMatchers("/students/**")
+				.hasRole("USER").antMatchers("/**").hasRole("ADMIN").and()
+				.csrf().disable().headers().frameOptions().disable();
+	}
 
 }
-
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/service/StudentService.java
@@ -279,52 +371,55 @@ public class SecurityConfig {
 package com.in28minutes.springboot.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
 
 import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.model.Student;
-import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class StudentService {
 
-    private static final List<Student> students = new ArrayList<>();
+	private static List<Student> students = new ArrayList<>();
 
-    static {
-        // Initialize Data
-        Course course1 = new Course("Course1", "Spring", "10 Steps",
-                List.of("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
-        Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
-                List.of("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
+	static {
+		// Initialize Data
+		Course course1 = new Course("Course1", "Spring", "10 Steps",
+				Arrays.asList("Learn Maven", "Import Project", "First Example",
+						"Second Example"));
+		Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
+				Arrays.asList("Learn Maven", "Import Project", "First Example",
+						"Second Example"));
 
-        Student ranga = new Student("Student1", "Ranga Karanam",
-                "Hiker, Programmer and Architect", new ArrayList<>(
-                List.of(course1, course2)));
+		Student ranga = new Student("Student1", "Ranga Karanam",
+				"Hiker, Programmer and Architect", new ArrayList<>(
+						Arrays.asList(course1, course2)));
 
-        students.add(ranga);
-    }
+		students.add(ranga);
+	}
 
-    public Student retrieveStudent(String studentId) {
+	public Student retrieveStudent(String studentId) {
+		for (Student student : students) {
+			if (student.getId().equals(studentId)) {
+				return student;
+			}
+		}
+		return null;
+	}
 
-        for (Student student : students) {
-            if (student.id().equals(studentId)) {
-                return student;
-            }
-        }
-        return null;
-    }
+	public List<Course> retrieveCourses(String studentId) {
+		Student student = retrieveStudent(studentId);
 
-    public List<Course> retrieveCourses(String studentId) {
-        Student student = retrieveStudent(studentId);
+		if (student == null) {
+			return null;
+		}
 
-        return student == null ? null : student.courses();
-
-    }
+		return student.getCourses();
+	}
 }
 ```
-
 ---
 
 ### /src/main/java/com/in28minutes/springboot/StudentServicesApplication.java
@@ -338,12 +433,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class StudentServicesApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(StudentServicesApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(StudentServicesApplication.class, args);
+	}
 }
 ```
-
 ---
 
 ### /src/main/resources/application.properties
@@ -352,7 +446,6 @@ public class StudentServicesApplication {
 spring.mvc.view.prefix=/WEB-INF/jsp/
 spring.mvc.view.suffix=.jsp
 ```
-
 ---
 
 ### /src/main/webapp/WEB-INF/jsp/welcome.jsp
@@ -362,26 +455,26 @@ spring.mvc.view.suffix=.jsp
     Welcome ${name}!! 
 </div>
 ```
-
 ---
 
 ### /src/test/java/com/in28minutes/springboot/StudentServicesApplicationTests.java
 
 ```java
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+package com.in28minutes.springboot;
 
-@ExtendWith(SpringExtension.class)
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class StudentServicesApplicationTests {
 
-    @Test
-    public void contextLoads() {
-    }
+	@Test
+	public void contextLoads() {
+	}
 
 }
 ```
-
 ---
