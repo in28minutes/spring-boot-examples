@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Profile;
 
 @Profile("dev")
 public class DevelopmentOnlyConfiguration {
-	@Bean
-	public String dummy() {
-		return "something";
-	}
+    @Bean
+    public String dummy() {
+        return "something";
+    }
 }

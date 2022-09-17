@@ -1,44 +1,46 @@
 package com.in28minutes.springboot.jpa;
+// Changed from javax to jakarta
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Id;
 
 @Entity
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	private String name;
-	private String role;
+    private String name;
+    private String role;
 
-	protected User() {
-	}
+    protected User() {
+    }
 
-	public User(String name, String role) {
-		super();
-		this.name = name;
-		this.role = role;
-	}
+    public User(String name, String role) {
+        super();
+        this.name = name;
+        this.role = role;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", role=" + role + "]";
-	}
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", role=" + role + "]";
+    }
 
 }

@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder)
                 .username(username)
                 .password(password)
-                .roles("USER","ADMIN")
+                .roles("USER", "ADMIN")
                 .build();
     }
 
@@ -48,7 +48,6 @@ public class SecurityConfig {
     //A login form is shown for unauthorized requests
     //CSRF disable
     //Frames
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());

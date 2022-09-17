@@ -14,28 +14,23 @@ public class StudentService {
 
     static {
         // Initialize Data
-        Course course1 = new Course("Course1", "Spring", "10 Steps",
-                List.of("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
-        Course course2 = new Course("Course2", "Spring MVC", "10 Examples",
-                List.of("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
+        Course courseOne = new Course("Course1", "Spring", "10 Steps",
+                List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
+
+        Course courseTwo = new Course("Course2", "Spring MVC", "10 Examples",
+                List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
         Student ranga = new Student("Student1", "Ranga Karanam",
-                "Hiker, Programmer and Architect", new ArrayList<>(
-                List.of(course1, course2)));
+                "Hiker, Programmer and Architect", new ArrayList<>(List.of(courseOne, courseTwo)));
 
         students.add(ranga);
     }
 
     public Student retrieveStudent(String studentId) {
-
-        for (Student student : students) {
-            if (student.id().equals(studentId)) {
-                return student;
-            }
-        }
-        return null;
+        return students.stream()
+                .filter(student -> student.id().equals(studentId))
+                .findAny()
+                .orElse(null);
     }
 
     public List<Course> retrieveCourses(String studentId) {
