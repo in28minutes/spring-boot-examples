@@ -11,28 +11,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@RequestMapping("/students/{studentId}/courses")
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/students/{studentId}/courses")
+    @GetMapping()
     public List<Course> retrieveCoursesForStudent(@PathVariable String studentId) {
         return studentService.retrieveCourses(studentId);
     }
 
-	@GetMapping("/students/{studentId}/courses/{courseId}")
+	@GetMapping("/{courseId}")
 	public Course retrieveDetailsForCourse(
             @PathVariable String studentId,
             @PathVariable String courseId) {
 		return studentService.retrieveCourse(studentId, courseId);
 	}
 
-    @PostMapping("/students/{studentId}/courses")
+    @PostMapping()
     public ResponseEntity<Void> registerStudentForCourse(
             @PathVariable String studentId,
             @RequestBody Course newCourse) {
@@ -44,7 +46,7 @@ public class StudentController {
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(course.getId())
+                .buildAndExpand(course.id())
                 .toUri();
 
         return ResponseEntity.created(location)

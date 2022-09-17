@@ -47,8 +47,7 @@ public class StudentControllerIT {
     public void addCourse() {
 
         Course course = new Course("Course1", "Spring", "10Steps",
-                List.of("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
+                List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
         HttpEntity<Course> entity = new HttpEntity<>(course, headers);
 

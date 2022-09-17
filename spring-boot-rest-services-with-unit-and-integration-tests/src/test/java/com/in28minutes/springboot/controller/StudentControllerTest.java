@@ -45,8 +45,8 @@ public class StudentControllerTest {
 
         Mockito.when(studentService.retrieveCourse(Mockito.anyString(), Mockito.anyString())).thenReturn(mockCourse);
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/students/Student1/courses/Course1")
-				.accept(MediaType.APPLICATION_JSON);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/students/Student1/courses/Course1")
+                .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
