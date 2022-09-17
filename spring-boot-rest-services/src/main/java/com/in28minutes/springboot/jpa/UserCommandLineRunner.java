@@ -9,30 +9,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserCommandLineRunner implements CommandLineRunner {
 
-	private static final Logger log = LoggerFactory
-			.getLogger(UserCommandLineRunner.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserCommandLineRunner.class);
 
-	@Autowired
-	private UserRepository repository;
+    @Autowired
+    private UserRepository repository;
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) {
 
-		repository.save(new User("Ranga", "Admin"));
-		repository.save(new User("Ravi", "User"));
-		repository.save(new User("Satish", "Admin"));
-		repository.save(new User("Raghu", "User"));
+        repository.save(new User("Ranga", "Admin"));
+        repository.save(new User("Ravi", "User"));
+        repository.save(new User("Satish", "Admin"));
+        repository.save(new User("Raghu", "User"));
 
-		for (User user : repository.findAll()) {
-			log.info(user.toString());
-		}
+        repository.findAll()
+                .forEach(user -> LOGGER.info(user.toString()));
 
-		log.info("Admin users are.....");
-		log.info("____________________");
-		for (User user : repository.findByRole("Admin")) {
-			log.info(user.toString());
-		}
+        LOGGER.info("Admin users are.....");
+        LOGGER.info("____________________");
+        repository.findByRole("Admin")
+                .forEach(user -> LOGGER.info(user.toString()));
 
-	}
+    }
 
 }
