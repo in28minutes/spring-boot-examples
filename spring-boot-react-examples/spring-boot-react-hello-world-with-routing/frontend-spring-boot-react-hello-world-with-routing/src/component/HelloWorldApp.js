@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import MenuComponent from './MenuComponent'
 import HelloWorldBeanComponent from './HelloWorldBeanComponent';
 import HelloWorldStringComponent from './HelloWorldStringComponent';
@@ -12,11 +12,11 @@ class HelloWorldApp extends Component {
                     <>
                         <MenuComponent />
                         <div className="container">
-                            <Switch>
-                                <Route path="/" exact component={HelloWorldStringComponent} />
-                                <Route path="/hello-world-string" component={HelloWorldStringComponent} />
-                                <Route path="/hello-world-bean" component={HelloWorldBeanComponent} />
-                            </Switch>
+                            <Routes>
+                                <Route path="/" exact element={<HelloWorldStringComponent />} />
+                                <Route path="/hello-world-string" element={<HelloWorldStringComponent />} />
+                                <Route path="/hello-world-bean" element={<HelloWorldBeanComponent />} />
+                            </Routes>
                         </div>
                     </>
                 </Router>
