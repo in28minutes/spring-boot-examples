@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 public class SpringBootMicroserviceCurrencyConversionApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootMicroserviceCurrencyConversionApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootMicroserviceCurrencyConversionApplication.class, args);
+    }
 }
