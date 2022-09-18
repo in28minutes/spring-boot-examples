@@ -1,6 +1,7 @@
 package com.in28minutes.springboot.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class StudentControllerTest {
         // Send course as body to /students/Student1/courses
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
                         "/students/Student1/courses")
+                .with(csrf())
                 .accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
                 .contentType(MediaType.APPLICATION_JSON);
 
