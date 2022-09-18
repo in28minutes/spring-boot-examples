@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootFullStackHelloWorldWithRoutingApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootFullStackHelloWorldWithRoutingApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootFullStackHelloWorldWithRoutingApplication.class, args);
+    }
 
 }

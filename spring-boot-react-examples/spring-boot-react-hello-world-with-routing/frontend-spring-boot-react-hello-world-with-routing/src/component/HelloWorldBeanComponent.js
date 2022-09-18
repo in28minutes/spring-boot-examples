@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withNavigation from './WithNavigation.jsx'
 import HelloWorldService from '../service/HelloWorldService';
 
 class HelloWorldBeanComponent extends Component {
@@ -29,8 +30,8 @@ class HelloWorldBeanComponent extends Component {
     }
 
     gotoStringComponent = () => {
-        this.props.history.push('/hello-world-string')
+        this.props.navigate(`/hello-world-string`)
     }
 }
 
-export default HelloWorldBeanComponent
+export default withNavigation(HelloWorldBeanComponent)
