@@ -1,4 +1,5 @@
 package com.in28minutes.fullstack.springboot.fullstack.basic.authentication.springbootfullstackbasicauthloginlogout.basic.auth;
+
 public class AuthenticationBean {
 
     private String message;

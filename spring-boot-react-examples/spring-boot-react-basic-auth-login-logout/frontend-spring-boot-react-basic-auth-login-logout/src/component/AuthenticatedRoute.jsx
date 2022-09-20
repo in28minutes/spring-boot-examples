@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import AuthenticationService from '../service/AuthenticationService';
 
 class AuthenticatedRoute extends Component {
     render() {
         if (AuthenticationService.isUserLoggedIn()) {
-            return <Route {...this.props} />
+            return {...this.props.children}
         } else {
-            return <Redirect to="/login" />
+            return <Navigate to="/login" />
         }
 
     }

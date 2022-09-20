@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
 import ListCoursesComponent from './ListCoursesComponent';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import LoginComponent from './LoginComponent';
 import LogoutComponent from './LogoutComponent';
 import MenuComponent from './MenuComponent';
-import AuthenticationService from '../service/AuthenticationService';
 import AuthenticatedRoute from './AuthenticatedRoute';
+import withNavigation from './WithNavigation.jsx'
 
 class InstructorApp extends Component {
-
-
     render() {
+        const ListCoursesComponentWithNavigation = withNavigation(ListCoursesComponent);
+        const LogOutComponentWithNavigation = withNavigation(LogoutComponent);
+
         return (
             <>
                 <Router>
                     <>
                         <MenuComponent />
-                        <Switch>
-                            <Route path="/" exact component={LoginComponent} />
-                            <Route path="/login" exact component={LoginComponent} />
-                            <AuthenticatedRoute path="/logout" exact component={LogoutComponent} />
-                            <AuthenticatedRoute path="/courses" exact component={ListCoursesComponent} />
-                        </Switch>
+                        <Routes>
+                            <Route path="/" element={<LoginComponent />} />
+                            <Route path="/login" element={<LoginComponent />} />
+                            <Route path="/logout" element={
+                                <AuthenticatedRoute>
+                                    <LogOutComponentWithNavigation />
+                                </AuthenticatedRoute>
+                            } />
+
+                            <Route path="/courses" element={
+                                <AuthenticatedRoute>
+                                    <ListCoursesComponentWithNavigation />
+                                </AuthenticatedRoute>
+                            } />
+
+                        </Routes>
                     </>
                 </Router>
             </>
