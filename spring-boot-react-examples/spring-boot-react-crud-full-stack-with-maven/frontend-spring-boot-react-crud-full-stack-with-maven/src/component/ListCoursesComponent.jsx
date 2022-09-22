@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import withNavigation from './WithNavigation.jsx'
 import CourseDataService from '../service/CourseDataService';
 
 const INSTRUCTOR = 'in28minutes'
@@ -42,12 +43,12 @@ class ListCoursesComponent extends Component {
     }
 
     addCourseClicked() {
-        this.props.history.push(`/courses/-1`)
+        this.props.navigate(`/courses/-1`)
     }
 
     updateCourseClicked(id) {
         console.log('update ' + id)
-        this.props.history.push(`/courses/${id}`)
+        this.props.navigate(`/courses/${id}`)
     }
 
     render() {
@@ -55,7 +56,7 @@ class ListCoursesComponent extends Component {
         return (
             <div className="container">
                 <h3>All Courses</h3>
-                {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
+                {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
                         <thead>
@@ -89,4 +90,4 @@ class ListCoursesComponent extends Component {
     }
 }
 
-export default ListCoursesComponent
+export default withNavigation(ListCoursesComponent)
