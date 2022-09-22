@@ -23,7 +23,7 @@ class CourseComponent extends Component {
 
         console.log(this.state.id)
 
-        if (this.state.id == -1) {
+        if (this.state.id === -1) {
             return
         }
 
