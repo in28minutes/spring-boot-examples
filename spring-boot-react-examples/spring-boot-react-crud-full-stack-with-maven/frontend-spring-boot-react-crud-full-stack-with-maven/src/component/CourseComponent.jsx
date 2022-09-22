@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import withNavigation from './WithNavigation.jsx'
 import CourseDataService from '../service/CourseDataService';
 
 const INSTRUCTOR = 'in28minutes'
@@ -9,7 +10,7 @@ class CourseComponent extends Component {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
+            id: this.props.params.id,
             description: ''
         }
 
@@ -22,7 +23,7 @@ class CourseComponent extends Component {
 
         console.log(this.state.id)
 
-        if (this.state.id == -1) {
+        if (this.state.id === -1) {
             return
         }
 
@@ -55,10 +56,10 @@ class CourseComponent extends Component {
 
         if (this.state.id === -1) {
             CourseDataService.createCourse(username, course)
-                .then(() => this.props.history.push('/courses'))
+                .then(() => this.props.navigate('/courses'))
         } else {
             CourseDataService.updateCourse(username, this.state.id, course)
-                .then(() => this.props.history.push('/courses'))
+                .then(() => this.props.navigate('/courses'))
         }
 
         console.log(values);
@@ -104,4 +105,4 @@ class CourseComponent extends Component {
 
 }
 
-export default CourseComponent
+export default withNavigation(CourseComponent)
