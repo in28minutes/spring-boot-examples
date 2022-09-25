@@ -1,12 +1,14 @@
 package com.in28minutes.fullstack.springboot.jwt.basic.authentication.springbootjwtauthloginlogout.jwt;
 
+import java.io.Serial;
 import java.io.Serializable;
 
-public class  JwtTokenRequest implements Serializable {
-  
-  private static final long serialVersionUID = -5616176897013108345L;
+public class JwtTokenRequest implements Serializable {
 
-  private String username;
+    @Serial
+    private static final long serialVersionUID = -5616176897013108345L;
+
+    private String username;
     private String password;
 
     public JwtTokenRequest() {

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootFullStackJwtAuthLoginLogoutApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootFullStackJwtAuthLoginLogoutApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootFullStackJwtAuthLoginLogoutApplication.class, args);
+    }
 
 }
