@@ -2,10 +2,10 @@ package com.in28minutes.fullstack.springboot.jwt.basic.authentication.springboot
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,20 +24,20 @@ import io.jsonwebtoken.ExpiredJwtException;
 @Component
 public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFilter {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserDetailsService jwtInMemoryUserDetailsService;
-    
+
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-    
+
     @Value("${jwt.http.request.header}")
     private String tokenHeader;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        logger.debug("Authentication Request For '{}'", request.getRequestURL());
+        LOGGER.debug("Authentication Request For '{}'", request.getRequestURL());
 
         final String requestTokenHeader = request.getHeader(this.tokenHeader);
 
@@ -48,15 +48,15 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                logger.error("JWT_TOKEN_UNABLE_TO_GET_USERNAME", e);
+                LOGGER.error("JWT_TOKEN_UNABLE_TO_GET_USERNAME", e);
             } catch (ExpiredJwtException e) {
-                logger.warn("JWT_TOKEN_EXPIRED", e);
+                LOGGER.warn("JWT_TOKEN_EXPIRED", e);
             }
         } else {
-            logger.warn("JWT_TOKEN_DOES_NOT_START_WITH_BEARER_STRING");
+            LOGGER.warn("JWT_TOKEN_DOES_NOT_START_WITH_BEARER_STRING");
         }
 
-        logger.debug("JWT_TOKEN_USERNAME_VALUE '{}'", username);
+        LOGGER.debug("JWT_TOKEN_USERNAME_VALUE '{}'", username);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = this.jwtInMemoryUserDetailsService.loadUserByUsername(username);
