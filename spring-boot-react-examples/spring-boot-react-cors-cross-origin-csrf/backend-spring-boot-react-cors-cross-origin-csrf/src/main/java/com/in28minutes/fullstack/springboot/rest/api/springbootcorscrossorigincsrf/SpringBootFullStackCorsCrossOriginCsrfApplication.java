@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootFullStackCorsCrossOriginCsrfApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootFullStackCorsCrossOriginCsrfApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootFullStackCorsCrossOriginCsrfApplication.class, args);
+    }
 
 }
