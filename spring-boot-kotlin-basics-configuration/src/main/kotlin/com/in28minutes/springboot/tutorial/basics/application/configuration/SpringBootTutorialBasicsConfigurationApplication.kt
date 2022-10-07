@@ -29,10 +29,10 @@ open class SpringBootTutorialBasicsConfigurationApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val applicationContext: ApplicationContext = SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication::class.java, *args)
-            for (name in applicationContext.beanDefinitionNames) {
-                println(name)
-            }
+            val applicationContext: ApplicationContext =
+                SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication::class.java, *args)
+            applicationContext.beanDefinitionNames.iterator()
+                .forEach { name -> println(name) }
         }
     }
 }
