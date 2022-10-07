@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class WelcomeResource {
-    @Value("${welcome.message}")
+    @Value("\${welcome.message}")
     private val welcomeMessage: String? = null
 
     @Autowired
