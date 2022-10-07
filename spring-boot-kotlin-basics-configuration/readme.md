@@ -146,7 +146,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/BasicConfiguration.java
+### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/BasicConfiguration.kt
 
 ```kotlin
 package com.in28minutes.springboot.tutorial.basics.application.configuration
@@ -164,7 +164,7 @@ class BasicConfiguration {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/SpringBootTutorialBasicsConfigurationApplication.java
+### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/SpringBootTutorialBasicsConfigurationApplication.kt
 
 ```kotlin
 package com.in28minutes.springboot.tutorial.basics.application.configuration
@@ -198,7 +198,7 @@ open class SpringBootTutorialBasicsConfigurationApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val applicationContext: ApplicationContext = SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication::class.java, *args)
+            val applicationContext: ApplicationContext = SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication::class.kt, *args)
             for (name in applicationContext.beanDefinitionNames) {
                 println(name)
             }
@@ -209,7 +209,7 @@ open class SpringBootTutorialBasicsConfigurationApplication {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/WelcomeResource.java
+### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/WelcomeResource.kt
 
 ```kotlin
 package com.in28minutes.springboot.tutorial.basics.application.configuration
@@ -290,7 +290,7 @@ basic:
 ```
 ---
 
-### /src/test/java/com/in28minutes/springboot/tutorial/basics/application/configuration/SpringBootTutorialBasicsConfigurationApplicationTests.java
+### /src/test/java/com/in28minutes/springboot/tutorial/basics/application/configuration/SpringBootTutorialBasicsConfigurationApplicationTests.kt
 
 ```kotlin
 package com.in28minutes.springboot.tutorial.basics.application.configuration
