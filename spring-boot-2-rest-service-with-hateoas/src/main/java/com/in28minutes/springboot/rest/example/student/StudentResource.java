@@ -79,4 +79,8 @@ public class StudentResource {
 
         return ResponseEntity.noContent().build();
     }
+
+    public doSomething() {
+        // do something
+    }
 }
