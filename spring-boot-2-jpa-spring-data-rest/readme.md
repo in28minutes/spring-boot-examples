@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.0.2</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
@@ -139,10 +139,13 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Student {
+    
     @Id
     @GeneratedValue
     private Long id;
+    
     private String name;
+    
     private String passportNumber;
 
     public Student() {
@@ -226,6 +229,7 @@ logging.level.org.hibernate.type=trace
 
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.data.jpa.repositories.bootstrap-mode=default
+spring.jpa.defer-datasource-initialization=true
 ```
 ---
 

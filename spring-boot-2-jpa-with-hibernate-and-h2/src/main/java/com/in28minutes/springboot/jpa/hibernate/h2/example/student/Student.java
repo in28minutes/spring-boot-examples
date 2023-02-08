@@ -1,16 +1,20 @@
 package com.in28minutes.springboot.jpa.hibernate.h2.example.student;
 
 // Changed from javax to jakarta
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
 public class Student {
+
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
+
     private String passportNumber;
 
     public Student() {
