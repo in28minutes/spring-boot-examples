@@ -19,7 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 @RequestMapping("/students")
 public class StudentResource {
-	private static final String ID = "/{id}";
+
+    private static final String ID = "/{id}";
 
     @Autowired
     private StudentRepository studentRepository;
@@ -29,15 +30,15 @@ public class StudentResource {
         return studentRepository.findAll();
     }
 
-	@GetMapping(ID)
-	public Student retrieveStudent(@PathVariable long id) {
-		Optional<Student> student = studentRepository.findById(id);
+    @GetMapping(ID)
+    public Student retrieveStudent(@PathVariable long id) {
+        Optional<Student> student = studentRepository.findById(id);
 
-		if (student.isEmpty())
-			throw new StudentNotFoundException("id-" + id);
+        if (student.isEmpty())
+            throw new StudentNotFoundException("id-" + id);
 
-		return student.get();
-	}
+        return student.get();
+    }
 
     @DeleteMapping(ID)
     public void deleteStudent(@PathVariable long id) {
@@ -48,8 +49,10 @@ public class StudentResource {
     public ResponseEntity<Object> createStudent(@RequestBody Student student) {
         Student savedStudent = studentRepository.save(student);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedStudent.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedStudent.getId())
+                .toUri();
 
         return ResponseEntity.created(location).build();
 
@@ -58,7 +61,7 @@ public class StudentResource {
     @PutMapping(ID)
     public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
 
-		Optional<Student> studentOptional = studentRepository.findById(id);
+        Optional<Student> studentOptional = studentRepository.findById(id);
 
         if (studentOptional.isEmpty())
             return ResponseEntity.notFound().build();
