@@ -1,6 +1,5 @@
 package com.in28minutes.springboot.rest.example.dynamicfiltering;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.converter.json.MappingJacksonValue;

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @JsonIgnoreProperties(value = {"passportNumber"})
 public class Student {
+
     @Id
     @GeneratedValue
     private Long id;
