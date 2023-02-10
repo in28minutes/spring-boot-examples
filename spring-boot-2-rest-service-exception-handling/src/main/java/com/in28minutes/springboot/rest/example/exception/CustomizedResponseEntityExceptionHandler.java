@@ -15,16 +15,21 @@ import com.in28minutes.springboot.rest.example.student.StudentNotFoundException;
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception exception, WebRequest request) {
+    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception exception,
+                                                                       WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
                 request.getDescription(false));
+
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(StudentNotFoundException studentNotFoundException, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), studentNotFoundException.getMessage(),
+    public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(StudentNotFoundException studentNotFoundException,
+                                                                               WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+                studentNotFoundException.getMessage(),
                 request.getDescription(false));
+
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
