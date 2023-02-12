@@ -29,6 +29,7 @@ public class WelcomeController {
         map.put("message", configuration.getMessage());
         map.put("number", configuration.getNumber());
         map.put("value", configuration.isValue());
+
         return map;
     }
 }

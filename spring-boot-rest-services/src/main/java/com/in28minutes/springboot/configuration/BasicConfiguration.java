@@ -6,8 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("basic")
 public class BasicConfiguration {
+
     private boolean value;
+
     private String message;
+
     private int number;
 
     public boolean isValue() {

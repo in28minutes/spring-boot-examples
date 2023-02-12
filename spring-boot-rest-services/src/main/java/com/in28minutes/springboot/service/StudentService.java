@@ -15,7 +15,7 @@ public class StudentService {
 
     private static final List<Student> students = new ArrayList<>();
 
-	private final SecureRandom random = new SecureRandom();
+    private final SecureRandom random = new SecureRandom();
 
     static {
         //Initialize Data
@@ -70,13 +70,13 @@ public class StudentService {
             return null;
         }
 
-		return student.courses().stream()
-				.filter(course -> course.id().equals(courseId))
-				.findAny()
-				.orElse(null);
+        return student.courses().stream()
+                .filter(course -> course.id().equals(courseId))
+                .findAny()
+                .orElse(null);
     }
 
-	public Course addCourse(String studentId, Course course) {
+    public Course addCourse(String studentId, Course course) {
         Student student = retrieveStudent(studentId);
 
         if (student == null) {
