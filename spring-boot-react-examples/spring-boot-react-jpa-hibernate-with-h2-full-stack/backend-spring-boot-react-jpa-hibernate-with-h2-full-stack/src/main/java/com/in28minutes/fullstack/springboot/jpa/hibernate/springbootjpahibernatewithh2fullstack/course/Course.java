@@ -1,6 +1,5 @@
 package com.in28minutes.fullstack.springboot.jpa.hibernate.springbootjpahibernatewithh2fullstack.course;
 
-// Changed from javax to jakarta
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -81,8 +80,8 @@ public class Course {
         } else if (!id.equals(other.id))
             return false;
         if (username == null) {
-			return other.username == null;
+            return other.username == null;
         } else return username.equals(other.username);
-	}
+    }
 
 }

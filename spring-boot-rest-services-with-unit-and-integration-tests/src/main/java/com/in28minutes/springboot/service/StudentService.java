@@ -65,9 +65,9 @@ public class StudentService {
             return null;
         }
 
-		return student.courses().stream()
-				.filter(course -> course.id().equals(courseId))
-				.findAny()
+        return student.courses().stream()
+                .filter(course -> course.id().equals(courseId))
+                .findAny()
                 .orElse(null);
 
     }
@@ -83,7 +83,7 @@ public class StudentService {
         course.setId(randomId);
 
         student.courses()
-				.add(course);
+                .add(course);
 
         return course;
     }
