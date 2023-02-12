@@ -14,14 +14,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
+		<version>3.0.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
@@ -55,7 +55,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>1.6</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<id>xjc</id>
@@ -65,7 +65,9 @@
 					</execution>
 				</executions>
 				<configuration>
-					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+					<sources>
+						<source>${project.basedir}/src/main/resources/student-details.xsd</source>
+					</sources>
 					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
 					<clearOutputDir>false</clearOutputDir>
 				</configuration>
