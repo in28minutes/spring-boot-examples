@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI springShopOpenAPI() {
+    public OpenAPI awesomeAPI() {
         return new OpenAPI()
                 .info(new Info().title("Awesome API Title")
                         .description("Awesome API Description")
