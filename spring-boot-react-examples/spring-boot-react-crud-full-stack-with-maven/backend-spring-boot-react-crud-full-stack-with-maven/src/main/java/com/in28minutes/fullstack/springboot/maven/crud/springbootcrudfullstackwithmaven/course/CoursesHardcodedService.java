@@ -22,16 +22,16 @@ public class CoursesHardcodedService {
         return courses;
     }
 
-	public Course save(Course course) {
-		if (course.getId() == -1 || course.getId() == 0) {
-			course.setId(++idCounter);
-			courses.add(course);
-		} else {
-			deleteById(course.getId());
-			courses.add(course);
-		}
-		return course;
-	}
+    public Course save(Course course) {
+        if (course.getId() == -1 || course.getId() == 0) {
+            course.setId(++idCounter);
+            courses.add(course);
+        } else {
+            deleteById(course.getId());
+            courses.add(course);
+        }
+        return course;
+    }
 
     public Course deleteById(long id) {
         Course course = findById(id);

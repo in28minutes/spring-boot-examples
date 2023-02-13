@@ -1,7 +1,9 @@
 ## Keep Learning Every Day
+
 - **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
 
 ## Check Out Our Amazing ROADMAPS
+
 - **1:** [AWS Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#aws-roadmap)
 - **2:** [Azure Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#azure-roadmap)
 - **3:** [Google Cloud Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#google-cloud-roadmap)
@@ -10,9 +12,7 @@
 - **6:** [Java Full Stack Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-full-stack-roadmap)
 - **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
 
-
 ## Example Code
-
 
 ### /spring-boot-microservice-currency-conversion-service/pom.xml
 
@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -38,7 +38,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2021.0.4</spring-cloud.version> <!-- aka Jubilee -->
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -91,14 +91,6 @@
 
     <repositories>
         <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
@@ -109,14 +101,6 @@
     </repositories>
 
     <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
         <pluginRepository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
@@ -131,6 +115,7 @@
 </project>
 
 ```
+
 ---
 
 ### /spring-boot-microservice-currency-conversion-service/src/main/java/com/in28minutes/springboot/microservice/example/currencyconversion/CurrencyConversionBean.java
@@ -150,6 +135,7 @@ public record CurrencyConversionBean(Long id,
 
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-currency-conversion-service/src/main/java/com/in28minutes/springboot/microservice/example/currencyconversion/CurrencyConversionController.java
@@ -217,6 +203,7 @@ public class CurrencyConversionController {
 
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-currency-conversion-service/src/main/java/com/in28minutes/springboot/microservice/example/currencyconversion/CurrencyExchangeServiceProxy.java
@@ -233,9 +220,10 @@ public interface CurrencyExchangeServiceProxy {
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
     CurrencyConversionBean retrieveExchangeValue(@PathVariable("from") String from,
-                                                        @PathVariable("to") String to);
+                                                 @PathVariable("to") String to);
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-currency-conversion-service/src/main/java/com/in28minutes/springboot/microservice/example/currencyconversion/SpringBootMicroserviceCurrencyConversionApplication.java
@@ -259,6 +247,7 @@ public class SpringBootMicroserviceCurrencyConversionApplication {
 }
 
 ```
+
 ---
 
 ### /spring-boot-microservice-currency-conversion-service/src/main/resources/application.properties
@@ -268,6 +257,7 @@ spring.application.name=currency-conversion-service
 server.port=8100
 eureka.client.service-url.default-zone=http://localhost:8761/eureka
 ```
+
 ---
 
 ### /spring-boot-microservice-currency-conversion-service/src/test/java/com/in28minutes/springboot/microservice/example/currencyconversion/SpringBootMicroserviceCurrencyConversionApplicationTests.java
@@ -291,6 +281,7 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
 }
 
 ```
+
 ---
 
 ### /spring-boot-microservice-eureka-naming-server/pom.xml
@@ -303,7 +294,7 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -317,7 +308,7 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
 
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2021.0.4</spring-cloud.version> <!-- aka Jubilee -->
+        <spring-cloud.version>2022.0.0</spring-cloud.version> <!-- aka Jubilee -->
     </properties>
 
     <dependencies>
@@ -356,14 +347,6 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
 
     <repositories>
         <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
@@ -374,14 +357,6 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
     </repositories>
 
     <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
         <pluginRepository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
@@ -394,6 +369,7 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
 
 </project>
 ```
+
 ---
 
 ### /spring-boot-microservice-eureka-naming-server/src/main/java/com/in28minutes/springboot/microservice/eureka/naming/server/SpringBootMicroserviceEurekaNamingServerApplication.java
@@ -414,6 +390,7 @@ public class SpringBootMicroserviceEurekaNamingServerApplication {
     }
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-eureka-naming-server/src/main/resources/application.properties
@@ -421,10 +398,10 @@ public class SpringBootMicroserviceEurekaNamingServerApplication {
 ```properties
 spring.application.name=netflix-eureka-naming-server
 server.port=8761
-
 eureka.client.register-with-eureka=false
 eureka.client.fetch-registry=false
 ```
+
 ---
 
 ### /spring-boot-microservice-eureka-naming-server/src/test/java/com/in28minutes/springboot/microservice/eureka/naming/server/SpringBootMicroserviceEurekaNamingServerApplicationTests.java
@@ -448,6 +425,7 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
 }
 
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/pom.xml
@@ -460,7 +438,7 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -474,7 +452,7 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
 
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2021.0.4</spring-cloud.version> <!-- aka Jubilee -->
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -531,14 +509,6 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
 
     <repositories>
         <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
@@ -549,14 +519,6 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
     </repositories>
 
     <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
         <pluginRepository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
@@ -569,6 +531,7 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
 
 </project>
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ExchangeValue.java
@@ -578,9 +541,9 @@ package com.in28minutes.springboot.microservice.example.forex;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class ExchangeValue {
@@ -636,6 +599,7 @@ public class ExchangeValue {
 
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ExchangeValueRepository.java
@@ -650,6 +614,7 @@ public interface ExchangeValueRepository extends JpaRepository<ExchangeValue, Lo
     ExchangeValue findByFromAndTo(String from, String to);
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/ForexController.java
@@ -684,6 +649,7 @@ public class ForexController {
     }
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/main/java/com/in28minutes/springboot/microservice/example/forex/SpringBootMicroserviceForexServiceApplication.java
@@ -704,6 +670,7 @@ public class SpringBootMicroserviceForexServiceApplication {
     }
 }
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/main/resources/application.properties
@@ -711,7 +678,6 @@ public class SpringBootMicroserviceForexServiceApplication {
 ```properties
 spring.application.name=forex-service
 server.port=8000
-
 # Enabling H2 Console
 spring.h2.console.enabled=true
 #Turn Statistics on
@@ -724,9 +690,9 @@ logging.level.org.hibernate.type=trace
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.data.jpa.repositories.bootstrap-mode=default
 spring.jpa.defer-datasource-initialization=true
-
 eureka.client.service-url.default-zone=http://localhost:8761/eureka
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/main/resources/data.sql
@@ -739,6 +705,7 @@ values(10002,'EUR','INR',75,0);
 insert into exchange_value(id,currency_from,currency_to,conversion_multiple,port)
 values(10003,'AUD','INR',25,0);
 ```
+
 ---
 
 ### /spring-boot-microservice-forex-service/src/test/java/com/in28minutes/springboot/microservice/example/forex/SpringBootMicroserviceForexServiceApplicationTests.java
@@ -761,4 +728,5 @@ public class SpringBootMicroserviceForexServiceApplicationTests {
 
 }
 ```
+
 ---

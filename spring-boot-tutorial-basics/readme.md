@@ -3,9 +3,11 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
 -->
 
 ## Keep Learning Every Day
+
 - **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
 
 ## Check Out Our Amazing ROADMAPS
+
 - **1:** [AWS Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#aws-roadmap)
 - **2:** [Azure Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#azure-roadmap)
 - **3:** [Google Cloud Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#google-cloud-roadmap)
@@ -13,7 +15,6 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
 - **5:** [DevOps Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#devops-roadmap)
 - **6:** [Java Full Stack Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-full-stack-roadmap)
 - **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
-
 
 ## Example of Complete Code
 
@@ -27,7 +28,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 

@@ -25,7 +25,7 @@ public class CourseResource {
     @Autowired
     private CourseJpaRepository courseRepository;
 
-    @GetMapping()
+    @GetMapping
     public List<Course> getAllCourses(@PathVariable String username) {
         return courseRepository.findAll();
     }
@@ -46,7 +46,7 @@ public class CourseResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Course> updateCourse(@PathVariable String username,
-											   @PathVariable long id,
+                                               @PathVariable long id,
                                                @RequestBody Course course) {
         course.setUsername(username);
         Course courseUpdated = courseRepository.save(course);
@@ -54,9 +54,9 @@ public class CourseResource {
         return new ResponseEntity<Course>(courseUpdated, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Void> createCourse(@PathVariable String username,
-											 @RequestBody Course course) {
+                                             @RequestBody Course course) {
 
         course.setUsername(username);
         Course createdCourse = courseRepository.save(course);

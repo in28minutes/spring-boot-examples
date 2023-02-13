@@ -58,8 +58,10 @@ public class StudentResource {
     public ResponseEntity<Object> createStudent(@RequestBody Student student) {
         Student savedStudent = studentRepository.save(student);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedStudent.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedStudent.getId())
+                .toUri();
 
         return ResponseEntity.created(location).build();
 

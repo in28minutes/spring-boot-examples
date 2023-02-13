@@ -7,6 +7,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -20,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import io.swagger.annotations.ApiOperation;
-
 @RestController
 public class StudentResource {
 
@@ -34,8 +33,7 @@ public class StudentResource {
 	}
 
 	@GetMapping("/students/{id}")
-	@ApiOperation(value = "Find student by id",
-    notes = "Also returns a link to retrieve all students with rel - all-students")
+	@Operation(summary = "Find student by id, also returns a link to retrieve all students with rel - all-students")
 	public EntityModel<Student> retrieveStudent(@PathVariable long id) {
 		Optional<Student> student = studentRepository.findById(id);
 
@@ -60,8 +58,10 @@ public class StudentResource {
 	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
 		Student savedStudent = studentRepository.save(student);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedStudent.getId()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(savedStudent.getId())
+				.toUri();
 
 		return ResponseEntity.created(location).build();
 

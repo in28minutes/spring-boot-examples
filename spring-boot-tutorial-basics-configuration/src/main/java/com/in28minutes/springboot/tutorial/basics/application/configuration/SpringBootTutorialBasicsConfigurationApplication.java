@@ -1,5 +1,7 @@
 package com.in28minutes.springboot.tutorial.basics.application.configuration;
 
+import java.util.Arrays;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,9 +14,8 @@ public class SpringBootTutorialBasicsConfigurationApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication.class, args);
 
-        for (String name : applicationContext.getBeanDefinitionNames()) {
-            System.out.println(name);
-        }
+        Arrays.stream(applicationContext.getBeanDefinitionNames())
+                .forEach(System.out::println);
     }
 
     @Profile("dev")

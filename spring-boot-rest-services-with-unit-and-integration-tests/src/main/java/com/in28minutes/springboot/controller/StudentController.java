@@ -27,12 +27,13 @@ public class StudentController {
         return studentService.retrieveCourses(studentId);
     }
 
-	@GetMapping("/{courseId}")
-	public Course retrieveDetailsForCourse(
+    @GetMapping("/{courseId}")
+    public Course retrieveDetailsForCourse(
             @PathVariable String studentId,
             @PathVariable String courseId) {
-		return studentService.retrieveCourse(studentId, courseId);
-	}
+
+        return studentService.retrieveCourse(studentId, courseId);
+    }
 
     @PostMapping()
     public ResponseEntity<Void> registerStudentForCourse(

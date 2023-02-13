@@ -15,8 +15,8 @@ public class WelcomeResource {
     @Value("${welcome.message}")
     private String welcomeMessage;
 
-	@Autowired
-	private BasicConfiguration configuration;
+    @Autowired
+    private BasicConfiguration configuration;
 
     @GetMapping("/welcome")
     public String retrieveWelcomeMessage() {
@@ -28,9 +28,10 @@ public class WelcomeResource {
     public Map<String, Object> dynamicConfiguration() {
         // Not the best practice to use a map to store different types!
         Map<String, Object> configMap = new HashMap<>();
-		configMap.put("message", configuration.getMessage());
-		configMap.put("number", configuration.getNumber());
-		configMap.put("key", configuration.isValue());
+        configMap.put("message", configuration.getMessage());
+        configMap.put("number", configuration.getNumber());
+        configMap.put("key", configuration.isValue());
+
         return configMap;
     }
 }

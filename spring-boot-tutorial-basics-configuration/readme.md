@@ -3,9 +3,11 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
 -->
 
 ## Keep Learning Every Day
+
 - **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
 
 ## Check Out Our Amazing ROADMAPS
+
 - **1:** [AWS Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#aws-roadmap)
 - **2:** [Azure Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#azure-roadmap)
 - **3:** [Google Cloud Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#google-cloud-roadmap)
@@ -15,7 +17,6 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
 - **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
 
 ## Example of Complete Code
-
 
 ### /pom.xml
 
@@ -27,7 +28,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -108,6 +109,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
 
 </project>
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/BasicConfiguration.java
@@ -151,6 +153,7 @@ public class BasicConfiguration {
 
 }
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/SpringBootTutorialBasicsConfigurationApplication.java
@@ -195,6 +198,7 @@ public class SpringBootTutorialBasicsConfigurationApplication {
 }
 
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/tutorial/basics/application/configuration/WelcomeResource.java
@@ -237,6 +241,7 @@ public class WelcomeResource {
     }
 }
 ```
+
 ---
 
 ### /src/main/resources/application-dev.properties
@@ -245,6 +250,7 @@ public class WelcomeResource {
 welcome.message=Welcome message from property file! Welcome to ${app.name} in DEV
 basic.message=Dynamic Message in DEV
 ```
+
 ---
 
 ### /src/main/resources/application-prod.properties
@@ -252,6 +258,7 @@ basic.message=Dynamic Message in DEV
 ```properties
 logging.level.org.springframework=INFO
 ```
+
 ---
 
 ### /src/main/resources/application.properties
@@ -265,6 +272,7 @@ basic.value=true
 basic.message=Dynamic Message
 basic.number=100
 ```
+
 ---
 
 ### /src/main/resources/application.yaml
@@ -280,6 +288,7 @@ basic:
   message: Dynamic Message YAML
   number: 100
 ```
+
 ---
 
 ### /src/test/java/com/in28minutes/springboot/tutorial/basics/application/configuration/SpringBootTutorialBasicsConfigurationApplicationTests.java
@@ -302,4 +311,5 @@ public class SpringBootTutorialBasicsConfigurationApplicationTests {
 
 }
 ```
+
 ---

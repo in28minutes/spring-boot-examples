@@ -1,7 +1,9 @@
 ## Keep Learning Every Day
+
 - **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
 
 ## Check Out Our Amazing ROADMAPS
+
 - **1:** [AWS Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#aws-roadmap)
 - **2:** [Azure Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#azure-roadmap)
 - **3:** [Google Cloud Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#google-cloud-roadmap)
@@ -9,7 +11,6 @@
 - **5:** [DevOps Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#devops-roadmap)
 - **6:** [Java Full Stack Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-full-stack-roadmap)
 - **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
-
 
 ## Example Of Complete Code
 
@@ -23,7 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -110,6 +111,7 @@
 
 </project>
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/rest/example/SpringBoot2RestServiceApplication.java
@@ -128,6 +130,7 @@ public class SpringBoot2RestServiceApplication {
     }
 }
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/rest/example/student/Student.java
@@ -141,10 +144,13 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Student {
+    
     @Id
     @GeneratedValue
     private Long id;
+    
     private String name;
+    
     private String passportNumber;
 
     public Student() {
@@ -184,6 +190,7 @@ public class Student {
 
 }
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/rest/example/student/StudentNotFoundException.java
@@ -203,6 +210,7 @@ public class StudentNotFoundException extends RuntimeException {
 
 }
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/rest/example/student/StudentRepository.java
@@ -218,6 +226,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 }
 ```
+
 ---
 
 ### /src/main/java/com/in28minutes/springboot/rest/example/student/StudentResource.java
@@ -306,6 +315,7 @@ public class StudentResource {
     }
 }
 ```
+
 ---
 
 ### /src/main/resources/application.properties
@@ -324,6 +334,7 @@ spring.datasource.url=jdbc:h2:mem:testdb
 spring.data.jpa.repositories.bootstrap-mode=default
 spring.jpa.defer-datasource-initialization=true
 ```
+
 ---
 
 ### /src/main/resources/data.sql
@@ -335,6 +346,7 @@ values(10001,'Ranga', 'E1234567');
 insert into student
 values(10002,'Ravi', 'A1234568');
 ```
+
 ---
 
 ### /src/test/java/com/in28minutes/springboot/rest/example/SpringBoot2RestServiceApplicationTests.java
@@ -359,4 +371,5 @@ public class SpringBoot2RestServiceApplicationTests {
 
 }
 ```
+
 ---
