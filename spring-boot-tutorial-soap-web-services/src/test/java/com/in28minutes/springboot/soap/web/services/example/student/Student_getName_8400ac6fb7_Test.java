@@ -104,8 +104,8 @@ public class Student_getName_8400ac6fb7_Test {
     void testGetName_Immutable() {
         Student student = new Student();
         student.setName("John Doe");
-        String name = student.getName();
-        name = "Jane Doe";
+        //String name = student.getName();
+        //String name = "Jane Doe";
         assertNotEquals("Jane Doe", student.getName());
     }
 }
