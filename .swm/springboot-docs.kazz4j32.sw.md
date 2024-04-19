@@ -5,13 +5,13 @@ title: Springboot docs
 
 This doc describes the {{SUBJECT}} flow in our system. We will follow its implementation across the various locations so you can understand how the different parts create the full picture.
 
-<SwmSnippet path="/spring-boot-2-jdbc-with-h2/pom.xml" line="6">
+<SwmSnippet path="spring-boot-2-jdbc-with-h2/pom.xml" line="6">
 
 ---
 
-Hello pom
+Hello pom test 2
 
-```xml
+```
 	<groupId>com.in28minutes.springboot.rest.example</groupId>
 	<artifactId>spring-boot-2-jdbc-with-h2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
