@@ -14,7 +14,7 @@ All code examples for our website http://www.springboottutorial.com
 - **6:** [Java Full Stack Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-full-stack-roadmap)
 - **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
 
-[![Image](https://www.springboottutorial.com/images/Course-clean-code.png "Clean Code with Java: Learn Simple Design, Refactoring & TDD")](https://www.udemy.com/course/java-clean-code-with-refactoring-and-tdd/?referralCode=201A00544D2D754A688F)
+[![Image](https://img-c.udemycdn.com/course/480x270/4993276_3452.jpg "Master Spring Boot")](https://links.in28minutes.com/sb)
 
 
 ### Installing Eclipse & Embedded Maven
