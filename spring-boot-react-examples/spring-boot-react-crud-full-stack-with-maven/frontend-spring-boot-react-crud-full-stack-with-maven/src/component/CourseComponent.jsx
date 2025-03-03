@@ -37,12 +37,11 @@ class CourseComponent extends Component {
         let errors = {}
         if (!values.description) {
             errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
+        } else if (values.description.length < 100) {
+            errors.description = 'Enter at least 100 characters in Description'
         }
-
+    
         return errors
-
     }
 
     onSubmit(values) {
