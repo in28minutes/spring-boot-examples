@@ -22,7 +22,8 @@ public class HelloWorldController {
 
     @GetMapping("/email")
     public String getEmail(Student user) {
-        System.out.println(user.getPassportNumber())
+        System.out.println(user.getName());
+        System.out.println(user.getPassportNumber());
         return user.getName().toLowerCase(); // user가 null일 가능성 있음!
     }
 }
