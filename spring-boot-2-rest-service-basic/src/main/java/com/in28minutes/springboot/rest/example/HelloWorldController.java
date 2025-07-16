@@ -12,4 +12,9 @@ public class HelloWorldController {
     public String bye() {
         return "안녕히 계세요, Gwangjin!";
     }
+
+    @GetMapping("/breakTime")
+    public String breakTime() {
+        return "안녕히 계세요, Gwangjin!";
+    }
 }
