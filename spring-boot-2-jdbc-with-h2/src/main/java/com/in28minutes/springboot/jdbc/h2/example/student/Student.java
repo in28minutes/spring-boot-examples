@@ -51,4 +51,14 @@ public class Student {
         return String.format("Student [id=%s, name=%s, passportNumber=%s]", id, name, passportNumber);
     }
 
+    public String toJSON() {
+        return """
+				{
+					"id" : "%s",
+					"name" : "%s",
+					"passportNumber" : "%s",
+				}
+				""".formatted(id, name, passportNumber);
+    }
+
 }

@@ -9,12 +9,13 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Schema(description = "All details about the student. ")
 public class Student {
+
     @Id
     @GeneratedValue
     private Long id;
 
-    @Schema(name = "Name should have atleast 2 characters")
-    @Size(min = 2, message = "Name should have atleast 2 characters")
+    @Schema(name = "Name should have at least 2 characters")
+    @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
 
     private String passportNumber;

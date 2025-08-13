@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -37,7 +37,7 @@
     <description>Spring Boot 2 and REST - Example Project</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>
@@ -112,16 +112,13 @@
 ```java
 package com.in28minutes.springboot.rest.example.dynamicfiltering;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import java.util.List;
 
 @RestController
 public class FilteringController {
@@ -129,10 +126,10 @@ public class FilteringController {
     // field1,field2
     @GetMapping("/filtering")
     public MappingJacksonValue retrieveSomeBean() {
-        SomeBean someBean = new SomeBean("value1", "value2", "value3");
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
-        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
-        MappingJacksonValue mapping = new MappingJacksonValue(someBean);
+        var someBean = new SomeBean("value1", "value2", "value3");
+        var filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+        var filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+        var mapping = new MappingJacksonValue(someBean);
         mapping.setFilters(filters);
 
         return mapping;
@@ -145,9 +142,9 @@ public class FilteringController {
                 new SomeBean("value1", "value2", "value3"),
                 new SomeBean("value12", "value22", "value32")
         );
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field2", "field3");
-        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
-        MappingJacksonValue mapping = new MappingJacksonValue(list);
+        var filter = SimpleBeanPropertyFilter.filterOutAllExcept("field2", "field3");
+        var filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+        var mapping = new MappingJacksonValue(list);
         mapping.setFilters(filters);
 
         return mapping;
@@ -198,16 +195,20 @@ public class SpringBoot2RestServiceApplication {
 ```java
 package com.in28minutes.springboot.rest.example.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+@Data
+@NoArgsConstructor
 @Entity
 @JsonIgnoreProperties(value = {"passportNumber"})
 public class Student {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -216,41 +217,6 @@ public class Student {
 
     @JsonIgnore
     private String passportNumber;
-
-    public Student() {
-        super();
-    }
-
-    public Student(Long id, String name, String passportNumber) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.passportNumber = passportNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassportNumber() {
-        return passportNumber;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
 
 }
 ```
@@ -310,9 +276,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/students")
 public class StudentResource {
+    
+    private final StudentRepository studentRepository;
 
-    @Autowired
-    private StudentRepository studentRepository;
+    public StudentResource(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     @GetMapping()
     public List<Student> retrieveAllStudents() {

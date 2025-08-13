@@ -1,13 +1,12 @@
 package com.in28minutes.springboot.tutorial.basics.application.configuration;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class WelcomeResource {
@@ -15,8 +14,11 @@ public class WelcomeResource {
     @Value("${welcome.message}")
     private String welcomeMessage;
 
-    @Autowired
-    private BasicConfiguration configuration;
+    private final BasicConfiguration configuration;
+
+    public WelcomeResource(BasicConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
     @GetMapping("/welcome")
     public String retrieveWelcomeMessage() {
@@ -27,7 +29,7 @@ public class WelcomeResource {
     @RequestMapping("/dynamic-configuration")
     public Map<String, Object> dynamicConfiguration() {
         // Not the best practice to use a map to store different types!
-        Map<String, Object> configMap = new HashMap<>();
+        var configMap = new HashMap<String, Object>();
         configMap.put("message", configuration.getMessage());
         configMap.put("number", configuration.getNumber());
         configMap.put("key", configuration.isValue());

@@ -1,25 +1,22 @@
 package com.in28minutes.springboot.rest.example.student;
 
+import org.jspecify.annotations.NonNull;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 @RestController
 public class StudentResource {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+
+    public StudentResource(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     @GetMapping("/students")
     public List<Student> retrieveAllStudents() {
@@ -42,8 +39,8 @@ public class StudentResource {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<Object> createStudent(@RequestBody Student student) {
-        Student savedStudent = studentRepository.save(student);
+    public ResponseEntity<@NonNull Student> createStudent(@RequestBody Student student) {
+        var savedStudent = studentRepository.save(student);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -56,17 +53,16 @@ public class StudentResource {
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
+    public ResponseEntity<@NonNull Student> updateStudent(@RequestBody Student student,
+                                                          @PathVariable long id) {
 
-        Optional<Student> studentOptional = studentRepository.findById(id);
+        Optional<Student> studentDetails = studentRepository.findById(id);
 
-        if (studentOptional.isEmpty())
+        if (studentDetails.isEmpty())
             return ResponseEntity.notFound().build();
 
         student.setId(id);
-
         studentRepository.save(student);
-
         return ResponseEntity.noContent()
                 .build();
     }

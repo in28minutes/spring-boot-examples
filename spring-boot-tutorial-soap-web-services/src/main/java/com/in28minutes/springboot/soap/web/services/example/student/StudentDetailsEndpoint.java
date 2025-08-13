@@ -14,9 +14,9 @@ public class StudentDetailsEndpoint {
     @PayloadRoot(namespace = "http://in28minutes.com/students", localPart = "GetStudentDetailsRequest")
     @ResponsePayload
     public GetStudentDetailsResponse processCourseDetailsRequest(@RequestPayload GetStudentDetailsRequest request) {
-        GetStudentDetailsResponse response = new GetStudentDetailsResponse();
+        var response = new GetStudentDetailsResponse();
 
-        StudentDetails studentDetails = new StudentDetails();
+        var studentDetails = new StudentDetails();
         studentDetails.setId(request.getId());
         studentDetails.setName("Adam");
         studentDetails.setPassportNumber("E1234567");

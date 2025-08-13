@@ -1,11 +1,11 @@
 package com.in28minutes.springboot.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.model.Student;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -14,13 +14,13 @@ public class StudentService {
 
     static {
         // Initialize Data
-        Course courseOne = new Course("Course1", "Spring", "10 Steps",
+        var courseOne = new Course("Course1", "Spring", "10 Steps",
                 List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
-        Course courseTwo = new Course("Course2", "Spring MVC", "10 Examples",
+        var courseTwo = new Course("Course2", "Spring MVC", "10 Examples",
                 List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
-        Student ranga = new Student("Student1", "Ranga Karanam",
+        var ranga = new Student("Student1", "Ranga Karanam",
                 "Hiker, Programmer and Architect", new ArrayList<>(List.of(courseOne, courseTwo)));
 
         students.add(ranga);
@@ -34,7 +34,7 @@ public class StudentService {
     }
 
     public List<Course> retrieveCourses(String studentId) {
-        Student student = retrieveStudent(studentId);
+        var student = retrieveStudent(studentId);
 
         return student == null ? null : student.courses();
 

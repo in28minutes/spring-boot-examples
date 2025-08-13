@@ -98,3 +98,7 @@ node_modules
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 bin
+spring-boot-web-application/.idea/misc.xml
+spring-boot-web-application/.idea/misc.xml
+/spring-boot-web-application/.idea
+/spring-boot-web-application

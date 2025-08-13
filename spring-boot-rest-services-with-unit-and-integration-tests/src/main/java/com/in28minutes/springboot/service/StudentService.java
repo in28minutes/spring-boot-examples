@@ -1,13 +1,13 @@
 package com.in28minutes.springboot.service;
 
+import com.in28minutes.springboot.model.Course;
+import com.in28minutes.springboot.model.Student;
+import org.springframework.stereotype.Service;
+
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.in28minutes.springboot.model.Course;
-import com.in28minutes.springboot.model.Student;
-import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
@@ -18,22 +18,22 @@ public class StudentService {
 
     static {
         //Initialize Data
-        Course courseOne = new Course("Course1", "Spring", "10 Steps",
+        var courseOne = new Course("Course1", "Spring", "10 Steps",
                 List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
-        Course courseTwo = new Course("Course2", "Spring MVC", "10 Examples",
+        var courseTwo = new Course("Course2", "Spring MVC", "10 Examples",
                 List.of("Learn Maven", "Import Project", "First Example", "Second Example"));
 
-        Course courseThree = new Course("Course3", "Spring Boot", "6K Students",
+        var courseThree = new Course("Course3", "Spring Boot", "6K Students",
                 List.of("Learn Maven", "Learn Spring", "Learn Spring MVC", "First Example", "Second Example"));
 
-        Course courseFour = new Course("Course4", "Maven", "Most popular maven course on internet!",
+        var courseFour = new Course("Course4", "Maven", "Most popular maven course on internet!",
                 List.of("Pom.xml", "Build Life Cycle", "Parent POM", "Importing into Eclipse"));
 
-        Student ranga = new Student("Student1", "Ranga Karanam", "Hiker, Programmer and Architect",
+        var ranga = new Student("Student1", "Ranga Karanam", "Hiker, Programmer and Architect",
                 new ArrayList<>(List.of(courseOne, courseTwo, courseThree, courseFour)));
 
-        Student satish = new Student("Student2", "Satish T", "Hiker, Programmer and Architect",
+        var satish = new Student("Student2", "Satish T", "Hiker, Programmer and Architect",
                 new ArrayList<>(List.of(courseOne, courseTwo, courseThree, courseFour)));
 
         students.add(ranga);
@@ -53,13 +53,13 @@ public class StudentService {
     }
 
     public List<Course> retrieveCourses(String studentId) {
-        Student student = retrieveStudent(studentId);
+        var student = retrieveStudent(studentId);
 
         return student == null ? null : student.courses();
     }
 
     public Course retrieveCourse(String studentId, String courseId) {
-        Student student = retrieveStudent(studentId);
+        var student = retrieveStudent(studentId);
 
         if (student == null) {
             return null;
@@ -73,7 +73,7 @@ public class StudentService {
     }
 
     public Course addCourse(String studentId, Course course) {
-        Student student = retrieveStudent(studentId);
+        var student = retrieveStudent(studentId);
 
         if (student == null) {
             return null;

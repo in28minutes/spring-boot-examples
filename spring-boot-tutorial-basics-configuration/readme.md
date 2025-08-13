@@ -28,7 +28,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -41,7 +41,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
     <description>Spring Boot Tutorial - Application Configuration with Profiles and YAML</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>
@@ -49,10 +49,12 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -63,11 +65,18 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-h2console</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -83,29 +92,6 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-b
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
 
 </project>
 ```
@@ -163,7 +149,6 @@ package com.in28minutes.springboot.tutorial.basics.application.configuration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
@@ -171,7 +156,7 @@ import org.springframework.context.annotation.Profile;
 public class SpringBootTutorialBasicsConfigurationApplication {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication.class, args);
+        var applicationContext = SpringApplication.run(SpringBootTutorialBasicsConfigurationApplication.class, args);
 
         for (String name : applicationContext.getBeanDefinitionNames()) {
             System.out.println(name);
@@ -206,14 +191,13 @@ public class SpringBootTutorialBasicsConfigurationApplication {
 ```java
 package com.in28minutes.springboot.tutorial.basics.application.configuration;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class WelcomeResource {
@@ -221,8 +205,11 @@ public class WelcomeResource {
     @Value("${welcome.message}")
     private String welcomeMessage;
 
-    @Autowired
-    private BasicConfiguration configuration;
+    private final BasicConfiguration configuration;
+
+    public WelcomeResource(BasicConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
     @GetMapping("/welcome")
     public String retrieveWelcomeMessage() {
@@ -233,10 +220,11 @@ public class WelcomeResource {
     @RequestMapping("/dynamic-configuration")
     public Map<String, Object> dynamicConfiguration() {
         // Not the best practice to use a map to store different types!
-        Map<String, Object> configMap = new HashMap<>();
+        var configMap = new HashMap<String, Object>();
         configMap.put("message", configuration.getMessage());
         configMap.put("number", configuration.getNumber());
         configMap.put("key", configuration.isValue());
+
         return configMap;
     }
 }

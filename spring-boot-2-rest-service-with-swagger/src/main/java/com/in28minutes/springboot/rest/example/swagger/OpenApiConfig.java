@@ -8,11 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Reference Links :
- * <a href="https://springdoc.org/faq.html#how-can-i-configure-swagger-ui">Customize Swagger UI</a>
- * <a href="https://stackoverflow.com/questions/59291371/migrating-from-springfox-swagger-2-to-springdoc-open-api">StackOverflow Link</a>
+ * Reference Links:
+ * <ul>
+ *   <li><a href="https://springdoc.org/faq.html#how-can-i-configure-swagger-ui">
+ *       Customize Swagger UI</a></li>
+ *   <li><a href="https://stackoverflow.com/questions/59291371/migrating-from-springfox-swagger-2-to-springdoc-open-api">
+ *       Migrating from Springfox Swagger 2 to Springdoc OpenAPI (Stack Overflow)</a></li>
+ * </ul>
  */
-
 @Configuration
 public class OpenApiConfig {
 
