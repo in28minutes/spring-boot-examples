@@ -1,5 +1,6 @@
 package com.in28minutes.fullstack.springboot.jwt.basic.authentication.springbootjwtauthloginlogout.jwt;
 
+import org.jspecify.annotations.NonNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,17 +22,14 @@ public class JwtAuthenticationController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JwtTokenResponse> generateToken(
+    public ResponseEntity<@NonNull JwtTokenResponse> generateToken(
             @RequestBody JwtTokenRequest jwtTokenRequest) {
 
-        var authenticationToken =
-                new UsernamePasswordAuthenticationToken(
-                        jwtTokenRequest.username(),
-                        jwtTokenRequest.password());
+        var authenticationToken = new UsernamePasswordAuthenticationToken(
+                jwtTokenRequest.username(),
+                jwtTokenRequest.password());
 
-        var authentication =
-                authenticationManager.authenticate(authenticationToken);
-
+        var authentication = authenticationManager.authenticate(authenticationToken);
         var token = tokenService.generateToken(authentication);
 
         return ResponseEntity.ok(new JwtTokenResponse(token));

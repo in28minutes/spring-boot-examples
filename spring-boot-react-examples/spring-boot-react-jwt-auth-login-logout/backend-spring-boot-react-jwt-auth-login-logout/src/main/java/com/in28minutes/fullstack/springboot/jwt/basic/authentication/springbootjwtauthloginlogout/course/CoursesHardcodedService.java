@@ -1,12 +1,13 @@
 package com.in28minutes.fullstack.springboot.jwt.basic.authentication.springbootjwtauthloginlogout.course;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 @Service
 public class CoursesHardcodedService {
+
     private static final List<Course> courses = new ArrayList<>();
     private static long idCounter = 0;
 
