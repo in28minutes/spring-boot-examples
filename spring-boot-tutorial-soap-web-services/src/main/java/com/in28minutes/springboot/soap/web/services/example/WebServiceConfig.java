@@ -17,7 +17,7 @@ public class WebServiceConfig {
 
     @Bean
     public ServletRegistrationBean<?> messageDispatcherServlet(ApplicationContext context) {
-        MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
+        var messageDispatcherServlet = new MessageDispatcherServlet();
         messageDispatcherServlet.setApplicationContext(context);
         messageDispatcherServlet.setTransformWsdlLocations(true);
 
@@ -26,7 +26,7 @@ public class WebServiceConfig {
 
     @Bean(name = "students")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema) {
-        DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
+        var definition = new DefaultWsdl11Definition();
         definition.setPortTypeName("StudentPort");
         definition.setTargetNamespace("http://in28minutes.com/students");
         definition.setLocationUri("/ws");

@@ -32,7 +32,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-applic
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -45,7 +45,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-applic
     <description>Spring Boot Tutorial - Adding Bootstrap and JQuery to Web Application</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>

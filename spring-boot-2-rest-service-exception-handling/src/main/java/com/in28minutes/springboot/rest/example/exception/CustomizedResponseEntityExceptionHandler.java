@@ -2,6 +2,7 @@ package com.in28minutes.springboot.rest.example.exception;
 
 import java.time.LocalDateTime;
 
+import org.jspecify.annotations.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,18 +16,18 @@ import com.in28minutes.springboot.rest.example.student.StudentNotFoundException;
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception exception,
-                                                                       WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
+    public final ResponseEntity<@NonNull ExceptionResponse> handleAllExceptions(Exception exception,
+                                                                                WebRequest request) {
+        var exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
                 request.getDescription(false));
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(StudentNotFoundException studentNotFoundException,
+    public final ResponseEntity<@NonNull ExceptionResponse> handleUserNotFoundException(StudentNotFoundException studentNotFoundException,
                                                                                WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+        var exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
                 studentNotFoundException.getMessage(),
                 request.getDescription(false));
 

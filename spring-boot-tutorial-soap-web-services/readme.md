@@ -43,14 +43,13 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-s
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>4.0.0-M1</version>		<relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     </properties>
 
@@ -84,7 +83,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-s
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.6</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>xjc</id>
@@ -94,56 +93,17 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-tutorial-s
                     </execution>
                 </executions>
                 <configuration>
-                    <schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+                    <sources>
+                        <source>${project.basedir}/src/main/resources/student-details.xsd</source>
+                    </sources>
                     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                     <clearOutputDir>false</clearOutputDir>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-
 </project>
-
-        <!-- http://localhost:8080/ws/students.wsdl -->
+<!-- http://localhost:8080/ws/students.wsdl -->
 ```
 
 ---

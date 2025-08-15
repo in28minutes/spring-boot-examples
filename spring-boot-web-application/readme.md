@@ -28,7 +28,7 @@ Current Directory : /in28Minutes/git/spring-boot-examples/spring-boot-web-applic
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 

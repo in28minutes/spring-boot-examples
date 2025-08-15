@@ -1,9 +1,9 @@
 package com.in28minutes.fullstack.springboot.fullstack.basic.authentication.springbootfullstackbasicauthloginlogout.course;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class CoursesHardcodedService {

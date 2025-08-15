@@ -115,7 +115,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.in28minutes.springboot.jdbc.h2.example.student.Student;
-import com.in28minutes.springboot.jdbc.h2.example.student.StudentJdbcRepository;
+import com.in28minutes.springboot.jdbc.h2.example.student.StudentJdbcTemplateRepository;
 
 @SpringBootApplication
 public class SpringBoot2JdbcWithH2Application implements CommandLineRunner {
@@ -123,7 +123,7 @@ public class SpringBoot2JdbcWithH2Application implements CommandLineRunner {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    StudentJdbcRepository repository;
+    StudentJdbcTemplateRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBoot2JdbcWithH2Application.class, args);

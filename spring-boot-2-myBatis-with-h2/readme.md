@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -36,14 +36,15 @@
     <description>Spring Boot 2, myBatis and H2 - Example Project</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
+        <mybatis.version>3.0.5</mybatis.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.2</version>
+            <version>${mybatis.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -55,14 +56,28 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-h2console</artifactId>-->
+        <!--        </dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter-test</artifactId>
+            <version>${mybatis.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -75,29 +90,9 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
+
 ```
 ---
 
@@ -108,7 +103,6 @@ package com.in28minutes.springboot.mybatis.h2.example;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -121,15 +115,18 @@ public class SpringBoot2MyBatisWithH2Application implements CommandLineRunner {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    StudentMyBatisRepository repository;
+    private final StudentMyBatisRepository repository;
+
+    public SpringBoot2MyBatisWithH2Application(StudentMyBatisRepository repository) {
+        this.repository = repository;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBoot2MyBatisWithH2Application.class, args);
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         LOGGER.info("Student id 10001 -> {}", repository.findById(10001L));
 
@@ -142,6 +139,7 @@ public class SpringBoot2MyBatisWithH2Application implements CommandLineRunner {
         LOGGER.info("All users -> {}", repository.findAll());
     }
 }
+
 ```
 ---
 
@@ -174,21 +172,22 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface StudentMyBatisRepository {
     @Select("select * from student")
-    public List<Student> findAll();
+    List<Student> findAll();
 
     @Select("SELECT * FROM student WHERE id = #{id}")
-    public Student findById(long id);
+    Student findById(long id);
 
     @Delete("DELETE FROM student WHERE id = #{id}")
-    public int deleteById(long id);
+    int deleteById(long id);
 
     @Insert("INSERT INTO student(id, name, passport) VALUES (#{id}, #{name}, #{passport})")
-    public int insert(Student student);
+    int insert(Student student);
 
     @Update("Update student set name=#{name}, passport=#{passport} where id=#{id}")
-    public int update(Student student);
+    int update(Student student);
 
 }
+
 ```
 ---
 

@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -37,7 +37,7 @@
     <description>Spring Boot 2 and REST - Example Project</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>
@@ -60,6 +60,11 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
@@ -76,31 +81,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
+    
 </project>
 ```
 
@@ -133,10 +125,13 @@ package com.in28minutes.springboot.rest.example.student;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Student {
-    
     @Id
     @GeneratedValue
     private Long id;
@@ -145,42 +140,8 @@ public class Student {
 
     private String passportNumber;
 
-    public Student() {
-        super();
-    }
-
-    public Student(Long id, String name, String passportNumber) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.passportNumber = passportNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassportNumber() {
-        return passportNumber;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
 }
+
 ```
 
 ---
@@ -206,13 +167,15 @@ public class StudentNotFoundException extends RuntimeException {
 ```java
 package com.in28minutes.springboot.rest.example.student;
 
+import org.jspecify.annotations.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface StudentRepository extends JpaRepository<@NonNull Student, @NonNull Long> {
 
 }
+
 ```
 
 ---
@@ -222,26 +185,23 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 ```java
 package com.in28minutes.springboot.rest.example.student;
 
+import org.jspecify.annotations.NonNull;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 @RestController
 public class StudentResource {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+
+    public StudentResource(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     @GetMapping("/students")
     public List<Student> retrieveAllStudents() {
@@ -264,31 +224,35 @@ public class StudentResource {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<Object> createStudent(@RequestBody Student student) {
-        Student savedStudent = studentRepository.save(student);
+    public ResponseEntity<@NonNull Student> createStudent(@RequestBody Student student) {
+        var savedStudent = studentRepository.save(student);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedStudent.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedStudent.getId())
+                .toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location)
+                .build();
 
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
+    public ResponseEntity<@NonNull Student> updateStudent(@RequestBody Student student,
+                                                          @PathVariable long id) {
 
-        Optional<Student> studentOptional = studentRepository.findById(id);
+        Optional<Student> studentDetails = studentRepository.findById(id);
 
-        if (studentOptional.isEmpty())
+        if (studentDetails.isEmpty())
             return ResponseEntity.notFound().build();
 
         student.setId(id);
-
         studentRepository.save(student);
-
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent()
+                .build();
     }
 }
+
 ```
 
 ---

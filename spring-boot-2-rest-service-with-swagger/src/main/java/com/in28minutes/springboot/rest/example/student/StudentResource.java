@@ -1,33 +1,30 @@
 package com.in28minutes.springboot.rest.example.student;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import io.swagger.v3.oas.annotations.Operation;
+import org.jspecify.annotations.NonNull;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class StudentResource {
 
-	@Autowired
-	private StudentRepository studentRepository;
+	private final StudentRepository studentRepository;
 
-	@GetMapping("/students")
+    public StudentResource(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    @GetMapping("/students")
 	public List<Student> retrieveAllStudents() {
 		return studentRepository.findAll();
 	}
@@ -37,13 +34,11 @@ public class StudentResource {
 	public EntityModel<Student> retrieveStudent(@PathVariable long id) {
 		Optional<Student> student = studentRepository.findById(id);
 
-		if (!student.isPresent())
+		if (student.isEmpty())
 			throw new StudentNotFoundException("id-" + id);
 
 		EntityModel<Student> resource = EntityModel.of(student.get());
-
 		WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
-
 		resource.add(linkTo.withRel("all-students"));
 
 		return resource;
@@ -55,12 +50,12 @@ public class StudentResource {
 	}
 
 	@PostMapping("/students")
-	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
-		Student savedStudent = studentRepository.save(student);
+	public ResponseEntity<@NonNull Student> createStudent(@RequestBody Student student) {
+		var newStudent = studentRepository.save(student);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}")
-				.buildAndExpand(savedStudent.getId())
+				.buildAndExpand(newStudent.getId())
 				.toUri();
 
 		return ResponseEntity.created(location).build();
@@ -68,15 +63,15 @@ public class StudentResource {
 	}
 	
 	@PutMapping("/students/{id}")
-	public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
+	public ResponseEntity<@NonNull Student> updateStudent(@RequestBody Student student,
+                                                          @PathVariable long id) {
 
-		Optional<Student> studentOptional = studentRepository.findById(id);
+		Optional<Student> studentDetails = studentRepository.findById(id);
 
-		if (!studentOptional.isPresent())
+		if (studentDetails.isEmpty())
 			return ResponseEntity.notFound().build();
 
 		student.setId(id);
-		
 		studentRepository.save(student);
 
 		return ResponseEntity.noContent().build();

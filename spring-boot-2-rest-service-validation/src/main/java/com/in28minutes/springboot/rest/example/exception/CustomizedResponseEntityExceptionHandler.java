@@ -17,28 +17,28 @@ import com.in28minutes.springboot.rest.example.student.StudentNotFoundException;
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllExceptions(Exception exception,
+    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception exception,
                                                             WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
+        var exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
                 request.getDescription(false));
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public final ResponseEntity<Object> handleUserNotFoundException(StudentNotFoundException exception,
+    public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(StudentNotFoundException exception,
                                                                     WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
+        var exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
                 request.getDescription(false));
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
+    protected ResponseEntity<ExceptionResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
+        var exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
                 "Validation Failed",
                 exception.getBindingResult().toString());
 

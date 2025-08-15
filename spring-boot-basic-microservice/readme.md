@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -37,8 +37,8 @@
     <description>Microservices with Spring Boot and Spring Cloud - Currency Conversion Service</description>
 
     <properties>
-        <java.version>17</java.version>
-        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <java.version>21</java.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -294,7 +294,7 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -307,8 +307,8 @@ public class SpringBootMicroserviceCurrencyConversionApplicationTests {
     <description>Microservices with Spring Boot and Spring Cloud - Eureka Naming Server</description>
 
     <properties>
-        <java.version>17</java.version>
-        <spring-cloud.version>2022.0.0</spring-cloud.version> <!-- aka Jubilee -->
+        <java.version>21</java.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version> <!-- aka Jubilee -->
     </properties>
 
     <dependencies>
@@ -438,7 +438,7 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>4.0.0-M1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -451,8 +451,8 @@ public class SpringBootMicroserviceEurekaNamingServerApplicationTests {
     <description>Microservices with Spring Boot and Spring Cloud - Forex Service</description>
 
     <properties>
-        <java.version>17</java.version>
-        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <java.version>21</java.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
     </properties>
 
     <dependencies>

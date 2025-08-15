@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
+
 /**
- * Reference : <a href="https://support.intershop.com/kb/index.php/Display/2914L4">...</a>
+ * Reference:
+ * <a href="https://support.intershop.com/kb/index.php/Display/2914L4">...</a>
  */
 @OpenAPIDefinition(
         info = @Info(

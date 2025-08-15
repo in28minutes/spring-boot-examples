@@ -7,22 +7,22 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Profile
 
 @SpringBootApplication
-open class SpringBootTutorialBasicsConfigurationApplication {
+class SpringBootTutorialBasicsConfigurationApplication {
     @Profile("dev")
     @Bean
-    open fun devBean(): String {
+    fun devBean(): String {
         return "dev"
     }
 
     @Profile("qa")
     @Bean
-    open fun qaBean(): String {
+    fun qaBean(): String {
         return "qa"
     }
 
     @Profile("prod")
     @Bean
-    open fun prodBean(): String {
+    fun prodBean(): String {
         return "prod"
     }
 
