@@ -1,11 +1,8 @@
 package com.in28minutes.springboot.rest.example.dynamicfiltering;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import org.jspecify.annotations.NonNull;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.codec.JacksonCodecSupport;
-import org.springframework.http.codec.json.Jackson2CodecSupport;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,17 +31,14 @@ public class FilteringController {
      * @return field1, field2
      */
     @GetMapping("/filtering")
-    public ResponseEntity<@NonNull SomeBean> retrieveSomeBeanWithViewAndFilter() {
-        var someBean = new SomeBean("value1", "value2", "value3");
+    public MappingJacksonValue retrieveSomeBean() {
+        SomeBean someBean = new SomeBean("value1", "value2", "value3");
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
+        MappingJacksonValue mapping = new MappingJacksonValue(someBean);
+        mapping.setFilters(filters);
 
-        // Dynamic filter: allow only field1, field3
-        var filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field3");
-        var filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
-
-        return ResponseEntitay.ok()
-                .hint(JacksonCodecSupport.JSON_VIEW_HINT, Views.Public.class)
-                .hint(JacksonCodecSupport.JSON_FILTER_PROVIDER_HINT, filters)
-                .body(someBean);
+        return mapping;
     }
 
 
