@@ -1,9 +1,0 @@
-logging:
-  level:
-    org.springframework: INFO
-    org.springframework.web.servlet: DEBUG
-
-basic:
-  value: true
-  message: Dynamic Message YAML
-  number: 100
